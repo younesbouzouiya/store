@@ -1,1 +1,12 @@
-{"products":[],"categories":[],"announcements":[],"activity":[]}
+{
+  "products": [],
+  "categories": [],
+  "announcements": [],
+  "activity": [
+    {
+      "msg": "Developer logged in",
+      "time": "31/05/2026 23:45:51",
+      "color": "#6c63ff"
+    }
+  ]
+}
