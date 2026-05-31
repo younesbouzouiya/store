@@ -1,0 +1,3871 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>YOS Store — Next-Gen Digital Marketplace</title>
+<meta name="description" content="YOS Store — The most premium digital marketplace for games, apps, tools, and digital creations."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"/>
+
+<style>
+/* ═══════════════════════════════════════
+   CSS VARIABLES & RESET
+═══════════════════════════════════════ */
+:root {
+  --bg-primary: #04050a;
+  --bg-secondary: #080c14;
+  --bg-card: rgba(255,255,255,0.028);
+  --bg-card-hover: rgba(255,255,255,0.055);
+  --bg-glass: rgba(10,14,26,0.75);
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.18);
+  --accent: #6c63ff;
+  --accent2: #00d4ff;
+  --accent3: #ff6b9d;
+  --accent4: #ffd700;
+  --gold: #f5c842;
+  --text-primary: #f0f2ff;
+  --text-secondary: rgba(240,242,255,0.55);
+  --text-muted: rgba(240,242,255,0.3);
+  --glow: 0 0 40px rgba(108,99,255,0.25);
+  --glow2: 0 0 40px rgba(0,212,255,0.2);
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --shadow: 0 20px 60px rgba(0,0,0,0.6);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.45);
+  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: 'Cabinet Grotesk', sans-serif;
+  --font-body: 'Bricolage Grotesque', sans-serif;
+  --font-mono: 'Azeret Mono', monospace;
+  --nav-h: 72px;
+}
+[data-theme="light"] {
+  --bg-primary: #f0f2ff;
+  --bg-secondary: #e4e8f7;
+  --bg-card: rgba(0,0,0,0.035);
+  --bg-card-hover: rgba(0,0,0,0.065);
+  --bg-glass: rgba(240,242,255,0.82);
+  --border: rgba(0,0,0,0.07);
+  --border-hover: rgba(0,0,0,0.18);
+  --text-primary: #0a0c1a;
+  --text-secondary: rgba(10,12,26,0.55);
+  --text-muted: rgba(10,12,26,0.3);
+  --glow: 0 0 40px rgba(108,99,255,0.15);
+  --shadow-card: 0 8px 32px rgba(100,100,200,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  font-family:var(--font-body);
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background 0.4s ease,color 0.4s ease;
+}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+img{max-width:100%;display:block;}
+ul{list-style:none;}
+
+/* ═══════════════════════════════════════
+   ENHANCED TYPOGRAPHY SYSTEM
+═══════════════════════════════════════ */
+
+/* Fluid font-size scale */
+html { font-size: clamp(15px, 1vw + 10px, 17px); }
+
+/* Display headings — Cabinet Grotesk with tight tracking */
+h1, h2, h3, h4,
+.hero-title,
+.section-title,
+.featured-card-title,
+.product-icon-name,
+.dev-panel-title,
+.modal-title,
+.dev-welcome-title,
+.footer-col-title,
+.dev-header-info h1 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.03em;
+  font-feature-settings: "ss01" 1, "cv01" 1;
+}
+
+/* Body copy — Bricolage Grotesque with slightly open tracking */
+body, p, span, div,
+.product-card-desc,
+.product-desc,
+.hero-desc,
+.review-text,
+.activity-text,
+.notif-msg,
+.announcement-text {
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+  font-feature-settings: "ss01" 1;
+}
+
+/* Monospace — Azeret Mono */
+.nav-logo-sub,
+.product-card-category,
+.product-icon-cat,
+.quick-stat-label,
+.info-label,
+.cat-count,
+.hero-stat-label,
+.dev-stat-label,
+.activity-time,
+.notif-time,
+.review-date,
+.section-label,
+.hero-badge,
+.badge-new, .badge-hot, .badge-free, .badge-update,
+.upload-type,
+.tag,
+.form-label,
+[class*="stat-label"],
+[class*="card-category"],
+.footer-col-title {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+/* Hero title — ultra-bold, dramatic */
+.hero-title {
+  font-weight: 900;
+  font-size: clamp(44px, 7.5vw, 96px);
+  line-height: 0.97;
+  letter-spacing: -0.045em;
+}
+
+.hero-title .line1 { font-weight: 400; letter-spacing: -0.03em; }
+.hero-title .line2 { font-weight: 900; letter-spacing: -0.05em; }
+
+/* Hero description — lighter, more spacious */
+.hero-desc {
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+}
+
+/* Section titles — punchy */
+.section-title {
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+/* Section label — mono uppercase, tight */
+.section-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Product card name */
+.product-card-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+/* Product card description */
+.product-card-desc {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+}
+
+/* Buttons — display font for CTAs */
+.btn-primary,
+.btn-download,
+.btn-download-main,
+.modal-btn {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: 14px;
+}
+
+/* Nav links */
+.nav-link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 14px;
+}
+
+/* Nav logo text */
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  font-size: 21px;
+}
+
+/* Stats numbers — display font at max weight */
+.hero-stat-num,
+.dev-stat-num,
+.quick-stat-val,
+.review-big-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Featured card title */
+.featured-card-title {
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+/* Modal title */
+.modal-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+/* Dev welcome title */
+.dev-welcome-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+/* Dev header h1 */
+.dev-header-info h1 {
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+/* Review names */
+.review-user {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Footer brand text */
+.footer-brand p {
+  font-size: 13.5px;
+  line-height: 1.8;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* Nav search input */
+.nav-search input {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  letter-spacing: -0.005em;
+}
+
+/* Toast message */
+.toast-msg {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+}
+
+/* Form inputs */
+.form-input, .form-select, .form-textarea {
+  font-family: var(--font-body);
+  letter-spacing: -0.01em;
+}
+
+/* Dev panel title */
+.dev-panel-title {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Category card name */
+.cat-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.025em;
+}
+
+/* Badge text */
+.product-card-badge,
+.featured-card-badge,
+.dev-header-badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+/* Info table values */
+.info-val {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Product icon name (detail page) */
+.product-icon-name {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+/* Announcement bar */
+.announcement-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+.announcement-text strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Upload area text */
+.upload-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-size: 16px;
+}
+
+/* Notif panel title */
+.notif-panel-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg-secondary);}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;}
+
+/* ═══════════════════════════════════════
+   DYNAMIC BACKGROUND
+═══════════════════════════════════════ */
+.bg-canvas{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.bg-orb{
+  position:absolute;border-radius:50%;filter:blur(120px);opacity:0.18;animation:orbFloat 20s ease-in-out infinite;
+}
+.bg-orb:nth-child(1){width:700px;height:700px;background:radial-gradient(circle,#6c63ff,transparent);top:-200px;left:-200px;animation-delay:0s;}
+.bg-orb:nth-child(2){width:500px;height:500px;background:radial-gradient(circle,#00d4ff,transparent);top:30%;right:-150px;animation-delay:-7s;}
+.bg-orb:nth-child(3){width:600px;height:600px;background:radial-gradient(circle,#ff6b9d,transparent);bottom:-150px;left:30%;animation-delay:-14s;}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-30px) scale(1.05);}66%{transform:translate(-20px,20px) scale(0.95);}
+}
+
+/* GRID LINES */
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(108,99,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(108,99,255,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);
+  display:flex;align-items:center;padding:0 32px;gap:24px;
+  background:var(--bg-glass);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  transition:var(--transition);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;
+  position:relative;flex-shrink:0;
+}
+.nav-logo-mark{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:800;font-size:18px;
+  color:#fff;letter-spacing:-1px;
+  box-shadow:0 0 20px rgba(108,99,255,0.5);
+  transition:var(--transition);
+  position:relative;overflow:hidden;
+}
+.nav-logo-mark::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.25));
+}
+.nav-logo-mark.pressing{
+  animation:pressGlow 0.1s ease forwards;
+  box-shadow:0 0 40px rgba(108,99,255,0.9),0 0 80px rgba(108,99,255,0.4);
+}
+@keyframes pressGlow{to{transform:scale(0.92);}}
+.nav-logo-text{
+  font-family:var(--font-display);font-weight:800;font-size:20px;
+  background:linear-gradient(135deg,var(--text-primary),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-logo-sub{font-size:10px;color:var(--text-muted);font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-top:-4px;}
+
+.nav-links{
+  display:flex;align-items:center;gap:4px;
+  margin-left:16px;
+}
+.nav-link{
+  padding:8px 16px;border-radius:var(--radius-sm);
+  font-size:14px;font-weight:500;color:var(--text-secondary);
+  transition:var(--transition);position:relative;
+}
+.nav-link:hover,.nav-link.active{color:var(--text-primary);background:var(--bg-card);}
+.nav-link.active::after{
+  content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+  width:20px;height:2px;border-radius:99px;background:var(--accent);
+}
+
+.nav-search{
+  flex:1;max-width:420px;margin-left:auto;position:relative;
+}
+.nav-search input{
+  width:100%;height:40px;border-radius:var(--radius-sm);padding:0 40px 0 42px;
+  background:var(--bg-card);border:1px solid var(--border);
+  color:var(--text-primary);font-family:var(--font-body);font-size:14px;
+  outline:none;transition:var(--transition);
+}
+.nav-search input:focus{border-color:var(--accent);background:var(--bg-card-hover);box-shadow:0 0 0 3px rgba(108,99,255,0.15);}
+.nav-search input::placeholder{color:var(--text-muted);}
+.nav-search .search-icon{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:var(--text-muted);font-size:16px;pointer-events:none;
+}
+.search-results-dropdown{
+  position:absolute;top:calc(100% + 8px);left:0;right:0;
+  background:var(--bg-glass);backdrop-filter:blur(28px);border:1px solid var(--border-hover);
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  display:none;z-index:200;
+  max-height:420px;overflow-y:auto;
+}
+.search-results-dropdown.active{display:block;animation:searchDrop 0.2s cubic-bezier(0.2,0,0,1);}
+@keyframes searchDrop{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.search-header{
+  padding:10px 14px 6px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
+}
+.search-filter-chips{display:flex;gap:5px;flex-wrap:wrap;}
+.search-chip{
+  padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;
+  border:1px solid var(--border);background:var(--bg-card);
+  color:var(--text-muted);cursor:pointer;font-family:var(--font-mono);
+  letter-spacing:0.04em;transition:var(--transition);
+}
+.search-chip.active,.search-chip:hover{
+  background:var(--accent);border-color:var(--accent);color:#fff;
+}
+.search-count{font-size:10px;color:var(--text-muted);font-family:var(--font-mono);flex-shrink:0;}
+.search-result-item{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;
+  transition:background 0.15s;cursor:pointer;position:relative;
+}
+.search-result-item:hover,.search-result-item.focused{background:var(--bg-card-hover);}
+.search-result-item.focused::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent);border-radius:0 2px 2px 0;
+}
+.search-result-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;overflow:hidden;
+}
+.search-result-icon img{width:100%;height:100%;object-fit:cover;}
+.search-result-info{flex:1;min-width:0;}
+.search-result-name{font-size:13px;font-weight:700;font-family:var(--font-display);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.search-result-name mark{background:rgba(108,99,255,0.3);color:var(--accent2);border-radius:2px;padding:0 1px;}
+.search-result-meta{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.search-result-badge{
+  padding:2px 8px;border-radius:99px;font-size:9px;font-weight:700;
+  font-family:var(--font-mono);letter-spacing:0.06em;flex-shrink:0;
+}
+.search-no-results{
+  padding:32px 20px;text-align:center;color:var(--text-muted);
+}
+.search-no-results .icon{font-size:32px;margin-bottom:8px;}
+.search-no-results p{font-size:13px;}
+.search-see-all{
+  padding:10px 14px;border-top:1px solid var(--border);
+  font-size:12px;font-weight:700;font-family:var(--font-display);
+  color:var(--accent);text-align:center;cursor:pointer;
+  transition:background 0.15s;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.search-see-all:hover{background:rgba(108,99,255,0.08);}
+/* Keyboard shortcut hint in search */
+.nav-search .search-kbd{
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  font-size:10px;font-family:var(--font-mono);color:var(--text-muted);
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:4px;padding:1px 5px;pointer-events:none;
+  transition:opacity 0.2s;
+}
+.nav-search input:focus ~ .search-kbd{opacity:0;}
+
+.nav-actions{display:flex;align-items:center;gap:8px;margin-left:16px;}
+.btn-icon{
+  width:40px;height:40px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-card);border:1px solid var(--border);
+  color:var(--text-secondary);font-size:18px;
+  transition:var(--transition);position:relative;
+}
+.btn-icon:hover{background:var(--bg-card-hover);color:var(--text-primary);border-color:var(--border-hover);}
+.notif-badge{
+  position:absolute;top:6px;right:6px;width:8px;height:8px;
+  border-radius:50%;background:var(--accent3);
+  border:2px solid var(--bg-primary);
+}
+.nav-avatar{
+  width:40px;height:40px;border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,var(--accent),var(--accent3));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;cursor:pointer;
+  border:1px solid var(--border-hover);
+  transition:var(--transition);
+}
+.nav-avatar:hover{box-shadow:0 0 20px rgba(108,99,255,0.4);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--text-primary);border-radius:99px;transition:var(--transition);}
+
+/* ═══════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════ */
+.main{
+  position:relative;z-index:1;
+  padding-top:var(--nav-h);
+  min-height:100vh;
+}
+
+/* ═══════════════════════════════════════
+   PAGES
+═══════════════════════════════════════ */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ═══════════════════════════════════════
+   HERO SECTION
+═══════════════════════════════════════ */
+.hero{
+  position:relative;padding:100px 32px 80px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  min-height:calc(100vh - var(--nav-h));
+}
+.hero-content{
+  max-width:760px;text-align:center;position:relative;z-index:2;
+  animation:heroReveal 1s cubic-bezier(0.2,0,0,1) both;
+}
+@keyframes heroReveal{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:99px;
+  background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.3);
+  font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:28px;
+  animation:badgePulse 3s ease-in-out infinite;
+}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(108,99,255,0.3);}50%{box-shadow:0 0 0 8px rgba(108,99,255,0);}}
+.hero-badge i{font-size:14px;}
+.hero-title{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(48px,7vw,88px);line-height:1.02;
+  letter-spacing:-3px;margin-bottom:24px;
+}
+.hero-title .line1{display:block;color:var(--text-primary);}
+.hero-title .line2{
+  display:block;
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 50%,var(--accent3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200%;animation:gradientShift 4s ease infinite;
+}
+@keyframes gradientShift{0%,100%{background-position:0%;}50%{background-position:100%;}}
+.hero-desc{
+  font-size:18px;color:var(--text-secondary);line-height:1.7;
+  max-width:560px;margin:0 auto 40px;font-weight:300;
+}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 32px;border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:600;font-size:15px;
+  box-shadow:0 8px 32px rgba(108,99,255,0.4);
+  transition:var(--transition);position:relative;overflow:hidden;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.15));
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(108,99,255,0.55);}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 32px;border-radius:var(--radius);
+  background:var(--bg-card);border:1px solid var(--border-hover);
+  color:var(--text-primary);font-weight:600;font-size:15px;
+  transition:var(--transition);backdrop-filter:blur(12px);
+}
+.btn-secondary:hover{background:var(--bg-card-hover);transform:translateY(-3px);}
+
+.hero-stats{
+  display:flex;align-items:center;justify-content:center;gap:48px;
+  margin-top:64px;padding-top:64px;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap;gap:32px;
+}
+.hero-stat{text-align:center;}
+.hero-stat-num{
+  font-family:var(--font-display);font-weight:800;font-size:36px;
+  background:linear-gradient(135deg,var(--text-primary),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-stat-label{font-size:12px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+
+/* FLOATING CARDS IN HERO */
+.hero-float{
+  position:absolute;top:15%;right:5%;
+  animation:floatCard 6s ease-in-out infinite;
+  opacity:0.7;
+}
+.hero-float2{
+  position:absolute;bottom:20%;left:3%;
+  animation:floatCard 8s ease-in-out infinite reverse;
+  opacity:0.5;
+}
+@keyframes floatCard{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-20px) rotate(2deg);}}
+.float-card{
+  background:var(--bg-glass);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px 20px;min-width:200px;
+  box-shadow:var(--shadow-card);
+}
+.float-card-title{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+.float-card-row{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.float-dot{width:8px;height:8px;border-radius:50%;}
+.float-card-label{font-size:13px;font-weight:500;}
+.float-bar{flex:1;height:4px;border-radius:99px;background:var(--border);}
+.float-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+
+/* ═══════════════════════════════════════
+   SECTION STYLES
+═══════════════════════════════════════ */
+.section{padding:72px 32px;}
+.section-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:36px;gap:16px;
+}
+.section-label{
+  font-size:11px;color:var(--accent2);font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';width:20px;height:2px;background:var(--accent2);border-radius:99px;}
+.section-title{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(22px,3vw,32px);letter-spacing:-1px;
+}
+.section-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:500;color:var(--accent);
+  padding:8px 16px;border-radius:var(--radius-sm);
+  background:rgba(108,99,255,0.1);transition:var(--transition);flex-shrink:0;
+}
+.section-link:hover{background:rgba(108,99,255,0.2);transform:translateX(2px);}
+
+/* ═══════════════════════════════════════
+   PRODUCT CARDS
+═══════════════════════════════════════ */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:20px;
+}
+.cards-grid-lg{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:24px;
+}
+.product-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  transition:var(--transition);cursor:pointer;
+  position:relative;
+}
+.product-card:hover{
+  background:var(--bg-card-hover);border-color:var(--border-hover);
+  transform:translateY(-6px);box-shadow:var(--shadow-card),0 0 40px rgba(108,99,255,0.1);
+}
+.product-card-banner{
+  height:130px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+}
+.product-card-banner img{width:100%;height:100%;object-fit:cover;}
+.product-card-banner-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.6));
+}
+.product-card-badge{
+  position:absolute;top:10px;right:10px;
+  padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;backdrop-filter:blur(8px);
+}
+.badge-new{background:rgba(0,212,255,0.2);color:var(--accent2);border:1px solid rgba(0,212,255,0.4);}
+.badge-hot{background:rgba(255,107,157,0.2);color:var(--accent3);border:1px solid rgba(255,107,157,0.4);}
+.badge-free{background:rgba(108,99,255,0.2);color:var(--accent);border:1px solid rgba(108,99,255,0.4);}
+.badge-update{background:rgba(245,200,66,0.2);color:var(--gold);border:1px solid rgba(245,200,66,0.4);}
+.product-card-icon{
+  width:48px;height:48px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.35);
+  transition:var(--transition);overflow:hidden;
+}
+.product-card:hover .product-card-icon{transform:scale(1.08);box-shadow:0 6px 20px rgba(108,99,255,0.45);}
+.product-card-icon img{width:100%;height:100%;object-fit:cover;border-radius:10px;}
+.product-card-body{padding:14px 16px 16px;}
+.product-card-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.product-card-header-info{flex:1;min-width:0;}
+.product-card-category{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+.product-card-name{font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.product-card-desc{font-size:12px;color:var(--text-secondary);line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.product-card-meta{display:flex;align-items:center;justify-content:space-between;}
+.product-card-rating{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:600;}
+.product-card-rating i{color:var(--gold);font-size:12px;}
+.product-card-downloads{font-size:11px;color:var(--text-muted);}
+.product-card-action{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border-top:1px solid var(--border);
+  margin-top:4px;
+}
+.btn-download{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 18px;border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-size:12px;font-weight:600;
+  transition:var(--transition);
+}
+.btn-download:hover{transform:scale(1.04);box-shadow:0 4px 20px rgba(108,99,255,0.5);}
+.btn-wishlist{
+  width:34px;height:34px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-card);border:1px solid var(--border);
+  color:var(--text-muted);font-size:16px;
+  transition:var(--transition);
+}
+.btn-wishlist:hover{color:var(--accent3);border-color:var(--accent3);}
+.btn-wishlist.active{color:var(--accent3);background:rgba(255,107,157,0.1);border-color:rgba(255,107,157,0.3);}
+
+/* FEATURED CARD (large) */
+.featured-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;
+  transition:var(--transition);cursor:pointer;
+  position:relative;min-height:320px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.featured-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-card),0 0 60px rgba(108,99,255,0.15);}
+.featured-card-bg{
+  position:absolute;inset:0;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));
+}
+.featured-card-bg img{width:100%;height:100%;object-fit:cover;}
+.featured-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(4,5,10,0.95) 0%,rgba(4,5,10,0.4) 50%,transparent 100%);
+}
+.featured-card-body{position:relative;z-index:2;padding:28px;}
+.featured-card-badge{
+  display:inline-block;padding:4px 12px;border-radius:99px;
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:rgba(108,99,255,0.3);color:var(--accent2);border:1px solid rgba(108,99,255,0.5);
+  margin-bottom:12px;backdrop-filter:blur(8px);
+}
+.featured-card-title{font-family:var(--font-display);font-weight:800;font-size:24px;margin-bottom:8px;line-height:1.2;}
+.featured-card-desc{font-size:13px;color:rgba(240,242,255,0.7);line-height:1.5;margin-bottom:16px;}
+.featured-card-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.featured-card-rating{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;}
+.featured-card-rating i{color:var(--gold);}
+.featured-card-dl{font-size:12px;color:rgba(240,242,255,0.5);}
+
+/* HORIZONTAL SCROLL */
+.h-scroll{
+  display:flex;gap:20px;overflow-x:auto;padding-bottom:8px;
+  scroll-snap-type:x mandatory;
+}
+.h-scroll::-webkit-scrollbar{height:4px;}
+.h-scroll::-webkit-scrollbar-track{background:transparent;}
+.h-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+.h-scroll .product-card,.h-scroll .featured-card{
+  flex-shrink:0;scroll-snap-align:start;
+}
+.h-scroll .product-card{width:200px;}
+.h-scroll .featured-card{width:300px;min-height:260px;}
+
+/* ═══════════════════════════════════════
+   CATEGORIES
+═══════════════════════════════════════ */
+.categories-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:16px;
+}
+.cat-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px 16px;
+  text-align:center;cursor:pointer;transition:var(--transition);
+  position:relative;overflow:hidden;
+}
+.cat-card::before{
+  content:'';position:absolute;inset:0;opacity:0;
+  background:linear-gradient(135deg,var(--cat-from),var(--cat-to));
+  transition:opacity 0.35s ease;
+}
+.cat-card:hover{transform:translateY(-4px);border-color:var(--border-hover);}
+.cat-card:hover::before{opacity:0.12;}
+.cat-icon{
+  width:52px;height:52px;border-radius:var(--radius-sm);margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  background:linear-gradient(135deg,var(--cat-from),var(--cat-to));
+  box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:var(--transition);
+}
+.cat-card:hover .cat-icon{transform:scale(1.1) rotate(-5deg);}
+.cat-name{font-size:13px;font-weight:600;margin-bottom:4px;}
+.cat-count{font-size:11px;color:var(--text-muted);}
+
+/* ═══════════════════════════════════════
+   BANNER / ANNOUNCEMENTS
+═══════════════════════════════════════ */
+.announcement-bar{
+  background:linear-gradient(135deg,rgba(108,99,255,0.15),rgba(0,212,255,0.1));
+  border:1px solid rgba(108,99,255,0.25);
+  border-radius:var(--radius);padding:16px 24px;
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:48px;
+}
+.announcement-icon{font-size:24px;flex-shrink:0;}
+.announcement-text{flex:1;font-size:14px;line-height:1.5;}
+.announcement-text strong{font-weight:600;color:var(--accent2);}
+.announcement-close{color:var(--text-muted);font-size:18px;flex-shrink:0;transition:var(--transition);}
+.announcement-close:hover{color:var(--text-primary);}
+
+/* ═══════════════════════════════════════
+   PRODUCT DETAIL PAGE
+═══════════════════════════════════════ */
+.product-detail{padding:40px 32px 80px;max-width:1200px;margin:0 auto;}
+.product-hero{
+  display:grid;grid-template-columns:1fr 340px;gap:40px;
+  margin-bottom:48px;align-items:start;
+}
+.product-screenshots{
+  border-radius:var(--radius-lg);overflow:hidden;
+  position:relative;background:var(--bg-secondary);
+  aspect-ratio:16/9;
+}
+.product-screenshots img{width:100%;height:100%;object-fit:cover;}
+.product-screenshots-placeholder{
+  width:100%;height:100%;
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+  display:flex;align-items:center;justify-content:center;font-size:64px;opacity:0.4;
+}
+.thumb-strip{display:flex;gap:8px;margin-top:12px;overflow-x:auto;}
+.thumb{
+  width:80px;height:56px;border-radius:8px;overflow:hidden;
+  border:2px solid transparent;cursor:pointer;flex-shrink:0;
+  background:var(--bg-secondary);transition:var(--transition);
+}
+.thumb.active,.thumb:hover{border-color:var(--accent);}
+.thumb img{width:100%;height:100%;object-fit:cover;}
+.product-sidebar{}
+.product-icon-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.product-icon-lg{
+  width:80px;height:80px;border-radius:20px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:36px;
+  box-shadow:0 8px 32px rgba(108,99,255,0.4);overflow:hidden;
+}
+.product-icon-lg img{width:100%;height:100%;object-fit:cover;}
+.product-icon-info{}
+.product-icon-cat{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;}
+.product-icon-name{font-family:var(--font-display);font-weight:800;font-size:26px;line-height:1.2;}
+.product-icon-dev{font-size:13px;color:var(--accent2);margin-top:4px;}
+.product-quick-stats{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;
+  margin-bottom:20px;
+}
+.quick-stat{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px;text-align:center;
+}
+.quick-stat-val{font-family:var(--font-display);font-weight:700;font-size:18px;}
+.quick-stat-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;}
+.btn-download-main{
+  width:100%;padding:16px;border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-size:16px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 8px 32px rgba(108,99,255,0.4);
+  transition:var(--transition);margin-bottom:12px;position:relative;overflow:hidden;
+}
+.btn-download-main::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.12));}
+.btn-download-main:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(108,99,255,0.55);}
+.product-action-row{display:flex;gap:8px;margin-bottom:24px;}
+.product-action-row .btn-secondary{flex:1;justify-content:center;font-size:13px;padding:10px;}
+.product-info-table{margin-top:8px;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.info-row:last-child{border-bottom:none;}
+.info-label{color:var(--text-muted);}
+.info-val{font-weight:500;}
+
+/* TABS */
+.product-tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.tab-btn{
+  padding:12px 20px;font-size:14px;font-weight:500;
+  color:var(--text-secondary);border-bottom:2px solid transparent;
+  margin-bottom:-1px;transition:var(--transition);
+}
+.tab-btn.active,.tab-btn:hover{color:var(--text-primary);}
+.tab-btn.active{border-bottom-color:var(--accent);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.product-desc{font-size:15px;color:var(--text-secondary);line-height:1.8;}
+.product-desc h3{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--text-primary);margin:20px 0 8px;}
+.feature-list{margin-top:16px;}
+.feature-item{
+  display:flex;align-items:flex-start;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+.feature-item:last-child{border-bottom:none;}
+.feature-check{color:var(--accent2);font-size:16px;flex-shrink:0;margin-top:2px;}
+.feature-text{font-size:14px;color:var(--text-secondary);line-height:1.5;}
+
+/* REVIEWS */
+.review-summary{
+  display:flex;align-items:center;gap:32px;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;margin-bottom:24px;
+}
+.review-big-num{font-family:var(--font-display);font-weight:800;font-size:56px;line-height:1;}
+.stars-row{display:flex;gap:4px;font-size:20px;color:var(--gold);}
+.review-count{font-size:13px;color:var(--text-muted);margin-top:4px;}
+.review-bars{flex:1;}
+.review-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+.review-bar-label{font-size:12px;color:var(--text-muted);width:40px;text-align:right;}
+.review-bar-track{flex:1;height:6px;border-radius:99px;background:var(--border);overflow:hidden;}
+.review-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),#ff9e0a);}
+.review-bar-count{font-size:12px;color:var(--text-muted);width:30px;}
+.review-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;margin-bottom:16px;
+}
+.review-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.review-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent3));
+  display:flex;align-items:center;justify-content:center;font-weight:700;
+}
+.review-user{font-weight:600;font-size:14px;}
+.review-date{font-size:11px;color:var(--text-muted);}
+.review-stars{display:flex;gap:2px;font-size:13px;color:var(--gold);margin-bottom:8px;}
+.review-text{font-size:14px;color:var(--text-secondary);line-height:1.6;}
+
+/* ═══════════════════════════════════════
+   DEVELOPER MODAL
+═══════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(0,0,0,0.8);backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.4s ease;
+}
+.modal-overlay.active{opacity:1;pointer-events:all;}
+.modal{
+  background:var(--bg-glass);border:1px solid var(--border-hover);
+  border-radius:var(--radius-lg);padding:48px 40px;
+  max-width:440px;width:90%;text-align:center;
+  transform:scale(0.9) translateY(20px);
+  transition:transform 0.4s cubic-bezier(0.2,0,0,1);
+  backdrop-filter:blur(24px);
+  position:relative;overflow:hidden;
+}
+.modal-overlay.active .modal{transform:scale(1) translateY(0);}
+.modal::before{
+  content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;
+  background:radial-gradient(circle,rgba(108,99,255,0.15),transparent);
+  pointer-events:none;
+}
+.modal-icon{
+  width:72px;height:72px;border-radius:20px;margin:0 auto 24px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:32px;
+  box-shadow:0 0 40px rgba(108,99,255,0.5);
+  animation:modalIconPulse 2s ease-in-out infinite;
+}
+@keyframes modalIconPulse{0%,100%{box-shadow:0 0 40px rgba(108,99,255,0.5);}50%{box-shadow:0 0 60px rgba(108,99,255,0.8);}}
+.modal-title{font-family:var(--font-display);font-weight:800;font-size:22px;margin-bottom:8px;}
+.modal-sub{font-size:14px;color:var(--text-secondary);line-height:1.5;margin-bottom:32px;}
+.modal-input-wrap{position:relative;margin-bottom:20px;}
+.modal-input{
+  width:100%;height:52px;border-radius:var(--radius-sm);
+  padding:0 48px 0 18px;
+  background:rgba(255,255,255,0.05);border:1px solid var(--border-hover);
+  color:var(--text-primary);font-family:var(--font-mono);font-size:16px;letter-spacing:4px;
+  outline:none;transition:var(--transition);text-align:center;
+}
+.modal-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.2);}
+.modal-input::placeholder{letter-spacing:1px;font-family:var(--font-body);}
+.modal-eye{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  color:var(--text-muted);font-size:18px;cursor:pointer;transition:var(--transition);
+}
+.modal-eye:hover{color:var(--text-primary);}
+.modal-btn{
+  width:100%;height:52px;border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-size:15px;font-weight:700;letter-spacing:1px;
+  transition:var(--transition);position:relative;overflow:hidden;
+}
+.modal-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.15));}
+.modal-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,99,255,0.5);}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-card);color:var(--text-muted);font-size:16px;
+  transition:var(--transition);
+}
+.modal-close:hover{background:var(--bg-card-hover);color:var(--text-primary);}
+.modal-status{
+  margin-top:16px;padding:12px;border-radius:var(--radius-sm);
+  font-size:13px;font-weight:500;display:none;
+}
+.modal-status.error{background:rgba(255,59,59,0.1);border:1px solid rgba(255,59,59,0.3);color:#ff6b6b;}
+.modal-status.success{background:rgba(0,212,100,0.1);border:1px solid rgba(0,212,100,0.3);color:#00d464;}
+
+/* SUCCESS ANIMATION */
+.dev-welcome{
+  position:fixed;inset:0;z-index:9500;
+  background:rgba(0,0,0,0.95);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  opacity:0;pointer-events:none;transition:opacity 0.5s;
+}
+.dev-welcome.active{opacity:1;pointer-events:all;}
+.dev-welcome-ring{
+  width:120px;height:120px;border-radius:50%;position:relative;margin-bottom:32px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:48px;
+  box-shadow:0 0 80px rgba(108,99,255,0.6);
+  animation:welcomeRing 1s ease-in-out;
+}
+@keyframes welcomeRing{0%{transform:scale(0) rotate(-90deg);}60%{transform:scale(1.15) rotate(5deg);}100%{transform:scale(1) rotate(0);}}
+.dev-welcome-title{
+  font-family:var(--font-display);font-weight:800;font-size:36px;text-align:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fadeSlideUp 0.6s 0.3s both;
+}
+.dev-welcome-sub{
+  font-size:16px;color:var(--text-secondary);margin-top:12px;text-align:center;
+  animation:fadeSlideUp 0.6s 0.5s both;
+}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.dev-particle{
+  position:absolute;width:6px;height:6px;border-radius:50%;
+  animation:particleFly 1.5s ease-out both;
+}
+@keyframes particleFly{0%{opacity:1;transform:translate(0,0) scale(1);}100%{opacity:0;transform:var(--fly) scale(0);}}
+
+/* ═══════════════════════════════════════
+   DEVELOPER DASHBOARD
+═══════════════════════════════════════ */
+.dev-dashboard{padding:40px 32px 80px;}
+.dev-header{
+  background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(0,212,255,0.08));
+  border:1px solid rgba(108,99,255,0.25);
+  border-radius:var(--radius-lg);padding:32px 40px;
+  display:flex;align-items:center;gap:24px;
+  margin-bottom:40px;position:relative;overflow:hidden;
+}
+.dev-header::before{
+  content:'YOS DEV';position:absolute;right:40px;
+  font-family:var(--font-display);font-weight:800;font-size:96px;
+  color:rgba(108,99,255,0.06);pointer-events:none;line-height:1;
+}
+.dev-avatar{
+  width:72px;height:72px;border-radius:20px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:28px;
+  box-shadow:0 0 32px rgba(108,99,255,0.4);flex-shrink:0;
+}
+.dev-header-info .dev-role{font-size:11px;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.dev-header-info h1{font-family:var(--font-display);font-weight:800;font-size:28px;}
+.dev-header-info p{font-size:14px;color:var(--text-secondary);margin-top:4px;}
+.dev-header-badge{
+  margin-left:auto;padding:8px 20px;border-radius:99px;
+  background:rgba(0,212,100,0.1);border:1px solid rgba(0,212,100,0.3);
+  color:#00d464;font-size:12px;font-weight:600;letter-spacing:1px;
+  display:flex;align-items:center;gap:6px;
+}
+.dev-header-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:#00d464;animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+.dev-stats-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;
+  margin-bottom:40px;
+}
+.dev-stat-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;
+  transition:var(--transition);
+}
+.dev-stat-card:hover{background:var(--bg-card-hover);border-color:var(--border-hover);}
+.dev-stat-icon{
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  margin-bottom:16px;
+}
+.dev-stat-num{font-family:var(--font-display);font-weight:800;font-size:28px;}
+.dev-stat-label{font-size:12px;color:var(--text-muted);margin-top:4px;}
+.dev-stat-change{font-size:11px;margin-top:6px;display:flex;align-items:center;gap:4px;}
+.change-up{color:#00d464;}
+.change-down{color:#ff6b6b;}
+
+.dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.dev-panel{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:28px;
+}
+.dev-panel-full{grid-column:1/-1;}
+.dev-panel-title{
+  font-family:var(--font-display);font-weight:700;font-size:18px;
+  margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.dev-panel-title i{color:var(--accent2);}
+
+/* UPLOAD AREA */
+.upload-zone{
+  border:2px dashed var(--border-hover);border-radius:var(--radius);
+  padding:40px;text-align:center;cursor:pointer;
+  transition:var(--transition);position:relative;overflow:hidden;
+}
+.upload-zone:hover,.upload-zone.dragging{
+  border-color:var(--accent);background:rgba(108,99,255,0.05);
+}
+.upload-icon{font-size:40px;color:var(--accent);margin-bottom:12px;}
+.upload-title{font-weight:600;font-size:16px;margin-bottom:6px;}
+.upload-sub{font-size:13px;color:var(--text-muted);}
+.upload-types{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;
+}
+.upload-type{
+  padding:4px 12px;border-radius:99px;font-size:11px;font-weight:600;
+  background:var(--bg-card-hover);border:1px solid var(--border);
+  color:var(--text-secondary);
+}
+
+/* PRODUCT LIST IN DASHBOARD */
+.dev-product-list{display:flex;flex-direction:column;gap:12px;}
+.dev-product-item{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 16px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,0.02);border:1px solid var(--border);
+  transition:var(--transition);
+}
+.dev-product-item:hover{background:var(--bg-card-hover);border-color:var(--border-hover);}
+.dev-product-icon{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.dev-product-info{flex:1;}
+.dev-product-name{font-weight:600;font-size:14px;}
+.dev-product-meta{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.dev-product-actions{display:flex;gap:8px;}
+.btn-edit,.btn-del{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  transition:var(--transition);
+}
+.btn-edit{background:rgba(108,99,255,0.1);color:var(--accent);}
+.btn-edit:hover{background:rgba(108,99,255,0.2);}
+.btn-del{background:rgba(255,59,59,0.1);color:#ff6b6b;}
+.btn-del:hover{background:rgba(255,59,59,0.2);}
+
+/* ACTIVITY LOG */
+.activity-list{display:flex;flex-direction:column;gap:0;}
+.activity-item{
+  display:flex;align-items:flex-start;gap:14px;padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+.activity-item:last-child{border-bottom:none;}
+.activity-dot{
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;
+}
+.activity-text{font-size:13px;color:var(--text-secondary);line-height:1.5;flex:1;}
+.activity-time{font-size:11px;color:var(--text-muted);flex-shrink:0;font-family:var(--font-mono);}
+
+/* ADD PRODUCT FORM */
+.form-group{margin-bottom:16px;}
+.form-label{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;display:block;}
+.form-input,.form-select,.form-textarea{
+  width:100%;border-radius:var(--radius-sm);
+  padding:12px 16px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  color:var(--text-primary);font-family:var(--font-body);font-size:14px;
+  outline:none;transition:var(--transition);
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15);
+}
+.form-textarea{resize:vertical;min-height:100px;}
+.form-select{appearance:none;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.footer{
+  border-top:1px solid var(--border);padding:60px 32px 32px;
+  position:relative;z-index:1;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+  margin-bottom:48px;
+}
+.footer-brand .nav-logo{margin-bottom:16px;display:inline-flex;}
+.footer-brand p{font-size:14px;color:var(--text-secondary);line-height:1.7;max-width:280px;}
+.footer-social{display:flex;gap:8px;margin-top:20px;}
+.social-btn{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-card);border:1px solid var(--border);
+  color:var(--text-secondary);font-size:16px;
+  transition:var(--transition);
+}
+.social-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-3px);}
+.footer-col-title{font-family:var(--font-display);font-weight:700;font-size:14px;margin-bottom:16px;letter-spacing:1px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-link{font-size:13px;color:var(--text-secondary);transition:var(--transition);}
+.footer-link:hover{color:var(--accent);transform:translateX(4px);}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:32px;border-top:1px solid var(--border);
+  font-size:13px;color:var(--text-muted);flex-wrap:wrap;gap:12px;
+}
+.footer-bottom a{color:var(--accent);transition:var(--transition);}
+.footer-bottom a:hover{color:var(--accent2);}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+.toast-container{position:fixed;bottom:32px;right:32px;z-index:9000;display:flex;flex-direction:column-reverse;gap:10px;}
+.toast{
+  background:var(--bg-glass);backdrop-filter:blur(24px);
+  border:1px solid var(--border-hover);border-radius:var(--radius-sm);
+  padding:14px 20px;min-width:280px;max-width:360px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:var(--shadow);
+  animation:toastIn 0.4s cubic-bezier(0.2,0,0,1);
+}
+@keyframes toastIn{from{opacity:0;transform:translateX(100px);}to{opacity:1;transform:translateX(0);}}
+.toast-icon{font-size:20px;flex-shrink:0;}
+.toast-msg{font-size:14px;font-weight:500;flex:1;}
+.toast-close{color:var(--text-muted);font-size:16px;cursor:pointer;flex-shrink:0;}
+.toast-success{border-color:rgba(0,212,100,0.4);}
+.toast-success .toast-icon{color:#00d464;}
+.toast-error{border-color:rgba(255,59,59,0.4);}
+.toast-error .toast-icon{color:#ff6b6b;}
+.toast-info{border-color:rgba(0,212,255,0.4);}
+.toast-info .toast-icon{color:var(--accent2);}
+
+/* ═══════════════════════════════════════
+   LOADING SKELETON
+═══════════════════════════════════════ */
+.skeleton{
+  background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s infinite;border-radius:8px;
+}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+/* ═══════════════════════════════════════
+   PROGRESS RING (for stats)
+═══════════════════════════════════════ */
+.progress-ring{position:relative;display:inline-flex;align-items:center;justify-content:center;}
+.progress-ring svg{transform:rotate(-90deg);}
+.progress-ring circle{fill:none;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.progress-ring-label{
+  position:absolute;font-family:var(--font-display);font-weight:800;
+  font-size:14px;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:1024px){
+  .product-hero{grid-template-columns:1fr;}
+  .dev-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .hero-float,.hero-float2{display:none;}
+}
+@media(max-width:768px){
+  .nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .nav-search{max-width:180px;}
+  .nav-hamburger{display:flex;}
+  .section{padding:48px 20px;}
+  .hero{padding:48px 20px 64px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:24px;}
+  .cards-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+  .dev-header{flex-wrap:wrap;}
+  .dev-header-badge{margin-left:0;}
+  .modal{padding:32px 24px;}
+  .dev-stats-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .hero-title{letter-spacing:-1px;}
+  .nav-search{display:none;}
+  .product-quick-stats{grid-template-columns:1fr 1fr 1fr;}
+  .review-summary{flex-direction:column;text-align:center;}
+}
+
+/* ═══════════════════════════════════════
+   MISC UTILITIES
+═══════════════════════════════════════ */
+.container{max-width:1280px;margin:0 auto;}
+.tag{
+  display:inline-flex;align-items:center;
+  padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600;
+  background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);
+}
+.sep{width:100%;height:1px;background:var(--border);margin:48px 0;}
+.glow-text{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+/* Press hold progress */
+.logo-hold-ring{
+  position:absolute;inset:-4px;border-radius:16px;pointer-events:none;
+  background:conic-gradient(var(--accent2) var(--hold-pct,0%),transparent var(--hold-pct,0%));
+  opacity:0;transition:opacity 0.2s;
+}
+.logo-hold-ring.active{opacity:1;}
+
+/* Page transition */
+.page-transition{
+  position:fixed;inset:0;z-index:800;background:var(--accent);
+  transform:scaleY(0);transform-origin:bottom;pointer-events:none;
+}
+
+/* Analytics chart simple bars */
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:100px;}
+.bar-item{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(to top,var(--accent),var(--accent2));min-height:4px;transition:height 1s ease;}
+.bar-label{font-size:10px;color:var(--text-muted);text-align:center;margin-top:6px;}
+
+/* Notification center */
+.notif-panel{
+  position:fixed;top:calc(var(--nav-h) + 8px);right:20px;z-index:500;width:320px;
+  background:var(--bg-glass);backdrop-filter:blur(24px);
+  border:1px solid var(--border-hover);border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  transform:translateY(-10px) scale(0.96);opacity:0;pointer-events:none;
+  transition:all 0.3s cubic-bezier(0.2,0,0,1);overflow:hidden;
+}
+.notif-panel.active{transform:translateY(0) scale(1);opacity:1;pointer-events:all;}
+.notif-panel-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.notif-panel-title{font-weight:700;font-size:15px;}
+.notif-item{padding:14px 20px;display:flex;gap:12px;border-bottom:1px solid var(--border);cursor:pointer;transition:var(--transition);}
+.notif-item:last-child{border-bottom:none;}
+.notif-item:hover{background:var(--bg-card-hover);}
+.notif-dot2{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.notif-msg{font-size:13px;color:var(--text-secondary);line-height:1.5;}
+.notif-time{font-size:11px;color:var(--text-muted);margin-top:4px;}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-canvas">
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+</div>
+<div class="bg-grid"></div>
+
+<!-- PAGE TRANSITION -->
+<div class="page-transition" id="pageTransition"></div>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-logo" id="navLogo">
+    <div class="nav-logo-mark" id="logoMark">      
+      <span>Y</span>
+      <div class="logo-hold-ring" id="holdRing"></div>
+    </div>
+    <div>
+      <div class="nav-logo-text">YOS Store</div>
+      <div class="nav-logo-sub">Digital Marketplace</div>
+    </div>
+  </div>
+
+  <nav class="nav-links">
+    <a class="nav-link active" onclick="navigate('home')">Home</a>
+    <a class="nav-link" onclick="navigate('explore')">Explore</a>
+    <a class="nav-link" onclick="navigate('games')">Games</a>
+    <a class="nav-link" onclick="navigate('apps')">Apps</a>
+    <a class="nav-link" onclick="navigate('tools')">Tools</a>
+  </nav>
+
+  <div class="nav-search">
+    <i class="uil uil-search search-icon"></i>
+    <input type="text" placeholder="Search games, apps, tools…" id="mainSearch" autocomplete="off"/>
+    <span class="search-kbd">/</span>
+    <div class="search-results-dropdown" id="searchDropdown"></div>
+  </div>
+
+  <div class="nav-actions">
+    <button class="btn-icon" id="themeToggle" title="Toggle theme">
+      <i class="uil uil-moon" id="themeIcon"></i>
+    </button>
+    <button class="btn-icon" id="notifBtn" title="Notifications">
+      <i class="uil uil-bell"></i>
+      <div class="notif-badge"></div>
+    </button>
+    <div class="nav-avatar" onclick="showToast('Profile coming soon!','info')">Y</div>
+    <button class="nav-hamburger" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- NOTIFICATION PANEL -->
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-panel-header">
+    <span class="notif-panel-title">Notifications</span>
+    <button style="font-size:12px;color:var(--accent)">Mark all read</button>
+  </div>
+  <div class="notif-item">
+    <div class="notif-dot2" style="background:#6c63ff"></div>
+    <div><div class="notif-msg">YOS Launcher v2.1 is now available for download.</div><div class="notif-time">2 min ago</div></div>
+  </div>
+  <div class="notif-item">
+    <div class="notif-dot2" style="background:#00d4ff"></div>
+    <div><div class="notif-msg">New game "NeonRacer X" has been published.</div><div class="notif-time">1 hr ago</div></div>
+  </div>
+  <div class="notif-item">
+    <div class="notif-dot2" style="background:#ff6b9d"></div>
+    <div><div class="notif-msg">Store update: New categories added.</div><div class="notif-time">3 hrs ago</div></div>
+  </div>
+  <div class="notif-item">
+    <div class="notif-dot2" style="background:#ffd700"></div>
+    <div><div class="notif-msg">Your wishlist item "PixelForge" is now free!</div><div class="notif-time">Yesterday</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════ -->
+<main class="main">
+
+  <!-- ══════════ HOME PAGE ══════════ -->
+  <div id="page-home" class="page active">
+
+    <!-- HERO -->
+    <section class="hero">
+      <!-- Floating cards -->
+      <div class="hero-float">
+        <div class="float-card">
+          <div class="float-card-title">📊 Live Downloads</div>
+          <div class="float-card-row">
+            <span class="float-dot" style="background:#6c63ff"></span>
+            <span class="float-card-label">Games</span>
+            <div class="float-bar"><div class="float-bar-fill" style="width:78%"></div></div>
+            <span style="font-size:12px;color:var(--text-muted)">78%</span>
+          </div>
+          <div class="float-card-row">
+            <span class="float-dot" style="background:#00d4ff"></span>
+            <span class="float-card-label">Apps</span>
+            <div class="float-bar"><div class="float-bar-fill" style="width:55%;background:linear-gradient(90deg,#00d4ff,#6c63ff)"></div></div>
+            <span style="font-size:12px;color:var(--text-muted)">55%</span>
+          </div>
+          <div class="float-card-row">
+            <span class="float-dot" style="background:#ff6b9d"></span>
+            <span class="float-card-label">Tools</span>
+            <div class="float-bar"><div class="float-bar-fill" style="width:38%;background:linear-gradient(90deg,#ff6b9d,#ff9e0a)"></div></div>
+            <span style="font-size:12px;color:var(--text-muted)">38%</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float2">
+        <div class="float-card">
+          <div class="float-card-title">⭐ Top Rated</div>
+          <div class="float-card-row">
+            <span style="font-size:20px">🎮</span>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:600">NeonRacer X</div>
+              <div style="font-size:11px;color:var(--gold)">★★★★★ 4.9</div>
+            </div>
+          </div>
+          <div class="float-card-row" style="margin-top:8px">
+            <span style="font-size:20px">🛠️</span>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:600">PixelForge Pro</div>
+              <div style="font-size:11px;color:var(--gold)">★★★★★ 4.8</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="uil uil-rocket"></i>
+          Next-Generation Digital Marketplace
+        </div>
+        <h1 class="hero-title">
+          <span class="line1">Discover & Download</span>
+          <span class="line2">Premium Digital</span>
+          <span class="line1">Creations</span>
+        </h1>
+        <p class="hero-desc">Games, apps, tools, assets, and digital experiences — all crafted and curated by Younes. One store. Infinite possibilities.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="navigate('explore')">
+            <i class="uil uil-compass"></i> Explore Store
+          </button>
+          <button class="btn-secondary" onclick="navigate('games')">
+            <i class="uil uil-game-structure"></i> Browse Games
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="products">0</div>
+            <div class="hero-stat-label">Products</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="downloads">0</div>
+            <div class="hero-stat-label">Downloads</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="users">0</div>
+            <div class="hero-stat-label">Active Users</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="satisfaction">0</div>
+            <div class="hero-stat-label">Satisfaction %</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="position:relative;z-index:1">
+
+    <!-- ANNOUNCEMENT -->
+    <div style="padding:0 32px">
+      <div class="announcement-bar" id="announcementBar">
+        <span class="announcement-icon">📢</span>
+        <div class="announcement-text"><strong>New Release!</strong> YOS Launcher v2.1 is now available with dark mode support and 50% faster loading times.</div>
+        <button class="announcement-close" onclick="document.getElementById('announcementBar').style.display='none'"><i class="uil uil-times"></i></button>
+      </div>
+    </div>
+
+    <!-- FEATURED -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-label">🔥 Editor's Choice</div>
+          <h2 class="section-title">Featured Products</h2>
+        </div>
+        <a class="section-link" onclick="navigate('explore')">View All <i class="uil uil-arrow-right"></i></a>
+      </div>
+      <div class="h-scroll" id="featuredScroll">
+        <!-- Generated by JS -->
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section" style="padding-top:0">
+      <div class="section-header">
+        <div>
+          <div class="section-label">🗂 Browse</div>
+          <h2 class="section-title">Categories</h2>
+        </div>
+      </div>
+      <div class="categories-grid">
+        <div class="cat-card" style="--cat-from:#6c63ff;--cat-to:#00d4ff" onclick="navigate('games')">
+          <div class="cat-icon">🎮</div>
+          <div class="cat-name">Games</div>
+          <div class="cat-count">18 products</div>
+        </div>
+        <div class="cat-card" style="--cat-from:#ff6b9d;--cat-to:#ff9e0a" onclick="navigate('apps')">
+          <div class="cat-icon">📱</div>
+          <div class="cat-name">Apps</div>
+          <div class="cat-count">12 products</div>
+        </div>
+        <div class="cat-card" style="--cat-from:#00d4ff;--cat-to:#6c63ff">
+          <div class="cat-icon">🛠️</div>
+          <div class="cat-name">Tools</div>
+          <div class="cat-count">9 products</div>
+        </div>
+        <div class="cat-card" style="--cat-from:#ffd700;--cat-to:#ff9e0a">
+          <div class="cat-icon">🌐</div>
+          <div class="cat-name">Web / HTML</div>
+          <div class="cat-count">7 products</div>
+        </div>
+        <div class="cat-card" style="--cat-from:#00d464;--cat-to:#00d4ff">
+          <div class="cat-icon">🎨</div>
+          <div class="cat-name">Assets</div>
+          <div class="cat-count">6 products</div>
+        </div>
+        <div class="cat-card" style="--cat-from:#ff6b9d;--cat-to:#6c63ff">
+          <div class="cat-icon">🤖</div>
+          <div class="cat-name">AI Tools</div>
+          <div class="cat-count">4 products</div>
+        </div>
+        <div class="cat-card" style="--cat-from:#6c63ff;--cat-to:#ff6b9d">
+          <div class="cat-icon">📦</div>
+          <div class="cat-name">Software</div>
+          <div class="cat-count">8 products</div>
+        </div>
+        <div class="cat-card" style="--cat-from:#00d4ff;--cat-to:#00d464">
+          <div class="cat-icon">📚</div>
+          <div class="cat-name">Documents</div>
+          <div class="cat-count">5 products</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRENDING -->
+    <section class="section" style="padding-top:0">
+      <div class="section-header">
+        <div>
+          <div class="section-label">📈 Trending</div>
+          <h2 class="section-title">Hot Downloads</h2>
+        </div>
+        <a class="section-link" onclick="navigate('explore')">See More <i class="uil uil-arrow-right"></i></a>
+      </div>
+      <div class="cards-grid" id="trendingGrid"></div>
+    </section>
+
+    <!-- NEW RELEASES -->
+    <section class="section" style="padding-top:0">
+      <div class="section-header">
+        <div>
+          <div class="section-label">✨ Just Dropped</div>
+          <h2 class="section-title">New Releases</h2>
+        </div>
+        <a class="section-link" onclick="navigate('explore')">View All <i class="uil uil-arrow-right"></i></a>
+      </div>
+      <div class="h-scroll" id="newReleasesScroll"></div>
+    </section>
+
+    <!-- MOST POPULAR -->
+    <section class="section" style="padding-top:0;padding-bottom:80px">
+      <div class="section-header">
+        <div>
+          <div class="section-label">👑 Most Loved</div>
+          <h2 class="section-title">Top Rated</h2>
+        </div>
+      </div>
+      <div class="cards-grid-lg" id="popularGrid"></div>
+    </section>
+
+    </div>
+  </div>
+
+  <!-- ══════════ EXPLORE PAGE ══════════ -->
+  <div id="page-explore" class="page">
+    <div style="padding:48px 32px 80px">
+      <div class="section-header" style="margin-bottom:32px">
+        <div>
+          <div class="section-label">🔍 Explore</div>
+          <h2 class="section-title">All Products</h2>
+        </div>
+      </div>
+      <!-- FILTER BAR -->
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px">
+        <select class="form-select" style="width:auto;min-width:140px" id="filterCat">
+          <option value="">All Categories</option>
+          <option>Games</option>
+          <option>Apps</option>
+          <option>Tools</option>
+          <option>Web / HTML</option>
+          <option>Assets</option>
+          <option>AI Tools</option>
+          <option>Software</option>
+        </select>
+        <select class="form-select" style="width:auto;min-width:120px" id="filterSort">
+          <option>Most Popular</option>
+          <option>Newest</option>
+          <option>Top Rated</option>
+          <option>A–Z</option>
+        </select>
+        <select class="form-select" style="width:auto;min-width:100px" id="filterRating">
+          <option value="">Any Rating</option>
+          <option>5 Stars</option>
+          <option>4+ Stars</option>
+          <option>3+ Stars</option>
+        </select>
+        <button class="btn-primary" style="padding:10px 20px;font-size:13px" onclick="renderExplore()">
+          <i class="uil uil-filter"></i> Apply
+        </button>
+      </div>
+      <div class="cards-grid" id="exploreGrid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ GAMES PAGE ══════════ -->
+  <div id="page-games" class="page">
+    <div style="padding:48px 32px 80px">
+      <div class="section-header">
+        <div>
+          <div class="section-label">🎮 Gaming</div>
+          <h2 class="section-title">Games</h2>
+        </div>
+      </div>
+      <div class="cards-grid-lg" id="gamesGrid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ APPS PAGE ══════════ -->
+  <div id="page-apps" class="page">
+    <div style="padding:48px 32px 80px">
+      <div class="section-header">
+        <div>
+          <div class="section-label">📱 Applications</div>
+          <h2 class="section-title">Apps & Software</h2>
+        </div>
+      </div>
+      <div class="cards-grid-lg" id="appsGrid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ TOOLS PAGE ══════════ -->
+  <div id="page-tools" class="page">
+    <div style="padding:48px 32px 80px">
+      <div class="section-header">
+        <div>
+          <div class="section-label">🛠 Utilities</div>
+          <h2 class="section-title">Tools & Utilities</h2>
+        </div>
+      </div>
+      <div class="cards-grid-lg" id="toolsGrid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ PRODUCT DETAIL PAGE ══════════ -->
+  <div id="page-product" class="page">
+    <div class="product-detail" id="productDetailContent"></div>
+  </div>
+
+
+  <!-- ══════════ DEVELOPER DASHBOARD ══════════ -->
+  <div id="page-dev" class="page">
+    <div class="dev-dashboard">
+      <!-- DEV HEADER -->
+      <div class="dev-header">
+        <div class="dev-avatar">👑</div>
+        <div class="dev-header-info">
+          <div class="dev-role">🔒 Official Developer Mode</div>
+          <h1>Welcome, Younes</h1>
+          <p>Administrator Control Center — YOS Store</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;margin-left:auto">
+          <div class="dev-header-badge"><span></span> ACTIVE SESSION</div>
+          <button class="btn-secondary" style="padding:8px 18px;font-size:13px;display:inline-flex;align-items:center;gap:8px" onclick="devUnlocked=false;navigate('home')">
+            <i class="uil uil-home-alt"></i> Back to Store
+          </button>
+        </div>
+      </div>
+
+      <!-- LIVE STATS -->
+      <div class="dev-stats-grid" id="devStatsGrid"></div>
+
+      <!-- DEV TABS NAV -->
+      <div class="dev-tabs-nav">
+        <button class="dev-tab-btn active" onclick="switchDevTab('products')"><i class="uil uil-apps"></i> Products</button>
+        <button class="dev-tab-btn" onclick="switchDevTab('add')"><i class="uil uil-plus-circle"></i> Add Product</button>
+        <button class="dev-tab-btn" onclick="switchDevTab('announcements')"><i class="uil uil-megaphone"></i> Announcements</button>
+        <button class="dev-tab-btn" onclick="switchDevTab('categories')"><i class="uil uil-layer-group"></i> Categories</button>
+        <button class="dev-tab-btn" onclick="switchDevTab('activity')"><i class="uil uil-history"></i> Activity Log</button>
+        <button class="dev-tab-btn" onclick="switchDevTab('password')"><i class="uil uil-lock-alt"></i> Change Password</button>
+      </div>
+
+      <!-- TAB: PRODUCTS MANAGER -->
+      <div class="dev-tab-content active" id="devTab-products">
+        <div class="dev-panel">
+          <div class="dev-panel-title"><i class="uil uil-apps"></i> Product Manager
+            <span id="devProductCount" style="font-size:13px;font-weight:500;color:var(--text-muted);margin-left:8px"></span>
+          </div>
+          <div id="devProductList" class="dev-product-list"></div>
+        </div>
+      </div>
+
+      <!-- TAB: ADD PRODUCT -->
+      <div class="dev-tab-content" id="devTab-add">
+        <div class="dev-grid">
+          <div class="dev-panel" style="grid-column:1/-1">
+            <div class="dev-panel-title"><i class="uil uil-plus-circle"></i> <span id="addProductTitle">Add New Product</span></div>
+            <input type="hidden" id="editProductId" value=""/>
+            <div class="dev-grid">
+              <!-- LEFT COLUMN -->
+              <div>
+                <!-- MAIN FILE UPLOAD -->
+                <div id="fileUploadArea">
+                  <div class="upload-zone" id="uploadZone" style="position:relative">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-title">Drop main file here or click to select</div>
+                    <div class="upload-sub" id="uploadFileName">Supports APK, ZIP, HTML, PDF, any format</div>
+                    <div class="upload-types">
+                      <span class="upload-type">APK</span><span class="upload-type">ZIP</span>
+                      <span class="upload-type">HTML</span><span class="upload-type">PDF</span>
+                      <span class="upload-type">EXE</span><span class="upload-type">ANY</span>
+                    </div>
+                  </div>
+                  <input type="file" id="fileInput" style="display:none"/>
+                  <!-- File attached state -->
+                  <div id="fileAttachedBar" style="display:none;margin-top:10px;background:rgba(0,212,100,0.08);border:1px solid rgba(0,212,100,0.25);border-radius:var(--radius-sm);padding:10px 14px;display:none;align-items:center;gap:10px">
+                    <span style="font-size:20px">📎</span>
+                    <div style="flex:1;min-width:0">
+                      <div id="fileAttachedName" style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#00d464"></div>
+                      <div id="fileAttachedSize" style="font-size:11px;color:var(--text-muted)"></div>
+                    </div>
+                    <button onclick="removeAttachedFile()" style="background:rgba(255,59,59,0.15);border:1px solid rgba(255,59,59,0.3);color:#ff6b6b;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px;transition:var(--transition)" title="Remove file">
+                      <i class="uil uil-trash-alt"></i> Remove
+                    </button>
+                  </div>
+                </div>
+
+                <!-- OR USE EXTERNAL LINK -->
+                <div style="display:flex;align-items:center;gap:10px;margin:14px 0 10px">
+                  <div style="flex:1;height:1px;background:var(--border)"></div>
+                  <span style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono);letter-spacing:0.1em">OR</span>
+                  <div style="flex:1;height:1px;background:var(--border)"></div>
+                </div>
+
+                <!-- EXTERNAL LINK (for large files) -->
+                <div style="background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.18);border-radius:var(--radius-sm);padding:14px">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                    <i class="uil uil-link" style="color:var(--accent2);font-size:16px"></i>
+                    <span style="font-size:13px;font-weight:700;font-family:var(--font-display)">External Download Link</span>
+                    <span style="font-size:10px;background:rgba(0,212,255,0.15);color:var(--accent2);border:1px solid rgba(0,212,255,0.3);border-radius:99px;padding:2px 8px;font-family:var(--font-mono)">FOR LARGE FILES</span>
+                  </div>
+                  <input class="form-input" id="fExternalLink" placeholder="https://drive.google.com/… or any direct link" style="font-size:13px"/>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.6">
+                    💡 Use for files &gt;50MB. Paste a direct link from Google Drive, Dropbox, GitHub Releases, MediaFire, etc. The user will be redirected to this URL on download.
+                  </div>
+                  <div id="extLinkBar" style="display:none;margin-top:8px;background:rgba(0,212,100,0.08);border:1px solid rgba(0,212,100,0.25);border-radius:8px;padding:8px 12px;display:none;align-items:center;gap:8px">
+                    <i class="uil uil-check-circle" style="color:#00d464"></i>
+                    <span id="extLinkPreview" style="font-size:12px;color:#00d464;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+                    <button onclick="removeExternalLink()" style="background:none;border:none;color:#ff6b6b;cursor:pointer;font-size:13px" title="Remove link"><i class="uil uil-times-circle"></i></button>
+                  </div>
+                </div>
+
+                <!-- BANNER IMAGE UPLOAD -->
+                <div style="margin-top:16px">
+                  <div class="upload-zone" id="imageUploadZone" style="padding:20px">
+                    <div style="font-size:28px">🖼️</div>
+                    <div class="upload-title" style="font-size:14px">Upload Banner / Screenshot</div>
+                    <div class="upload-sub" id="imageFileName">PNG, JPG, WebP recommended</div>
+                  </div>
+                  <input type="file" id="imageInput" accept="image/*" style="display:none"/>
+                  <div id="imagePreview" style="display:none;margin-top:12px;border-radius:12px;overflow:hidden;height:120px;background:var(--bg-secondary);position:relative">
+                    <img id="imagePreviewImg" style="width:100%;height:100%;object-fit:cover"/>
+                    <button onclick="removeImageFile()" style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.6);border:1px solid rgba(255,59,59,0.4);color:#ff6b6b;border-radius:8px;padding:4px 9px;font-size:11px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px;backdrop-filter:blur(8px)">
+                      <i class="uil uil-trash-alt"></i> Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- RIGHT COLUMN -->
+              <div>
+                <div class="form-group">
+                  <label class="form-label">Product Name *</label>
+                  <input class="form-input" id="fName" placeholder="e.g. NeonRacer X"/>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Category *</label>
+                    <select class="form-select" id="fCat">
+                      <option>Games</option><option>Apps</option><option>Tools</option>
+                      <option>Web / HTML</option><option>Assets</option><option>AI Tools</option>
+                      <option>Software</option><option>Documents</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Icon PNG <span style="color:var(--text-muted);font-size:10px">(512×512)</span></label>
+                    <div id="iconUploadZone" style="border:2px dashed var(--border-hover);border-radius:var(--radius-sm);padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:var(--transition);background:rgba(255,255,255,0.03)" onclick="document.getElementById('iconPngInput').click()">
+                      <div id="iconPreviewThumb" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;overflow:hidden">
+                        <span id="iconPreviewEmoji">📦</span>
+                        <img id="iconPreviewPng" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:7px" alt=""/>
+                      </div>
+                      <div style="flex:1;min-width:0">
+                        <div id="iconPngLabel" style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Upload Icon PNG</div>
+                        <div style="font-size:10px;color:var(--text-muted)">512×512px recommended</div>
+                      </div>
+                      <i class="uil uil-upload" style="color:var(--accent);font-size:16px"></i>
+                    </div>
+                    <input type="file" id="iconPngInput" accept="image/png,image/jpeg,image/webp" style="display:none"/>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Version</label>
+                    <input class="form-input" id="fVersion" placeholder="1.0.0"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Platform</label>
+                    <input class="form-input" id="fPlatform" placeholder="Android/Web/Windows"/>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Icon Emoji</label>
+                    <input class="form-input" id="fIcon" placeholder="🎮" maxlength="4"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Gradient Colors</label>
+                    <div style="display:flex;gap:6px;align-items:center">
+                      <input type="color" id="fColor1" value="#6c63ff" style="width:48px;height:40px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:none;padding:2px"/>
+                      <input type="color" id="fColor2" value="#00d4ff" style="width:48px;height:40px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:none;padding:2px"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Description *</label>
+                  <textarea class="form-textarea" id="fDesc" placeholder="Describe your product in detail…"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Features (one per line)</label>
+                  <textarea class="form-textarea" id="fFeatures" placeholder="Feature 1&#10;Feature 2&#10;Feature 3" style="min-height:80px"></textarea>
+                </div>
+                <div class="form-row" style="gap:8px;margin-top:8px">
+                  <button class="btn-primary" style="flex:1;justify-content:center;padding:13px" onclick="saveProduct()">
+                    <i class="uil uil-cloud-upload"></i> <span id="publishBtnText">Publish Product</span>
+                  </button>
+                  <button class="btn-secondary" style="justify-content:center;padding:13px 20px" onclick="resetProductForm()">
+                    <i class="uil uil-times"></i> Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: ANNOUNCEMENTS -->
+      <div class="dev-tab-content" id="devTab-announcements">
+        <div class="dev-panel">
+          <div class="dev-panel-title"><i class="uil uil-megaphone"></i> Manage Announcements</div>
+          <div class="dev-grid" style="margin-bottom:24px">
+            <div>
+              <div class="form-group">
+                <label class="form-label">Announcement Text *</label>
+                <textarea class="form-textarea" id="annText" placeholder="Type your announcement here…" style="min-height:80px"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Emoji Icon</label>
+                  <input class="form-input" id="annIcon" value="📢" maxlength="4"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Highlight Word</label>
+                  <input class="form-input" id="annHighlight" placeholder="e.g. New Release!"/>
+                </div>
+              </div>
+              <button class="btn-primary" style="width:100%;justify-content:center;padding:12px" onclick="publishAnnouncement()">
+                <i class="uil uil-check"></i> Publish Announcement
+              </button>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text-secondary)">Live Preview</div>
+              <div id="annPreview" class="announcement-bar" style="margin-bottom:0">
+                <span class="announcement-icon" id="annPreviewIcon">📢</span>
+                <div class="announcement-text" id="annPreviewText"><strong>Highlight</strong> Your announcement will appear here.</div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:12px;border-top:1px solid var(--border);padding-top:20px">Saved Announcements</div>
+          <div id="annList"></div>
+        </div>
+      </div>
+
+      <!-- TAB: CATEGORIES -->
+      <div class="dev-tab-content" id="devTab-categories">
+        <div class="dev-panel">
+          <div class="dev-panel-title"><i class="uil uil-layer-group"></i> Category Manager</div>
+          <div class="dev-grid" style="margin-bottom:24px">
+            <div>
+              <div class="form-group">
+                <label class="form-label">Category Name *</label>
+                <input class="form-input" id="catName" placeholder="e.g. Plugins"/>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Emoji Icon</label>
+                  <input class="form-input" id="catIcon" placeholder="🔌" maxlength="4"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Gradient</label>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <input type="color" id="catColor1" value="#6c63ff" style="width:48px;height:40px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:none;padding:2px"/>
+                    <input type="color" id="catColor2" value="#00d4ff" style="width:48px;height:40px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:none;padding:2px"/>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-primary" style="width:100%;justify-content:center;padding:12px" onclick="saveCategory()">
+                <i class="uil uil-check"></i> Save Category
+              </button>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text-secondary)">Current Categories</div>
+              <div id="catList" style="display:flex;flex-direction:column;gap:8px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: ACTIVITY LOG -->
+      <div class="dev-tab-content" id="devTab-activity">
+        <div class="dev-panel">
+          <div class="dev-panel-title"><i class="uil uil-history"></i> Activity Log
+            <button onclick="clearActivityLog()" style="margin-left:auto;font-size:12px;color:#ff6b6b;font-weight:600">Clear Log</button>
+          </div>
+          <div class="activity-list" id="activityLogList"></div>
+        </div>
+      </div>
+
+      <!-- TAB: CHANGE PASSWORD -->
+      <div class="dev-tab-content" id="devTab-password">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex-wrap:wrap">
+        <!-- CHANGE PASSWORD -->
+        <div class="dev-panel">
+          <div class="dev-panel-title"><i class="uil uil-lock-alt"></i> Change Developer Password</div>
+          <div style="background:rgba(108,99,255,0.07);border:1px solid rgba(108,99,255,0.2);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:24px;font-size:13px;color:var(--text-secondary)">
+            <i class="uil uil-shield-check" style="color:var(--accent2);margin-right:6px"></i>
+            The new password will be saved locally and required on next dev access.
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Password</label>
+            <div style="position:relative">
+              <input class="form-input" type="password" id="pwCurrent" placeholder="Enter current password" style="padding-right:44px"/>
+              <i class="uil uil-eye" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);cursor:pointer;font-size:18px" onclick="togglePwField('pwCurrent',this)"></i>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <div style="position:relative">
+              <input class="form-input" type="password" id="pwNew" placeholder="Enter new password (min 6 chars)" style="padding-right:44px"/>
+              <i class="uil uil-eye" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);cursor:pointer;font-size:18px" onclick="togglePwField('pwNew',this)"></i>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm New Password</label>
+            <div style="position:relative">
+              <input class="form-input" type="password" id="pwConfirm" placeholder="Repeat new password" style="padding-right:44px"/>
+              <i class="uil uil-eye" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);cursor:pointer;font-size:18px" onclick="togglePwField('pwConfirm',this)"></i>
+            </div>
+          </div>
+          <div id="pwStatus" style="display:none;padding:12px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;margin-bottom:16px"></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;padding:14px" onclick="changeDevPassword()">
+            <i class="uil uil-lock-alt"></i> Update Password
+          </button>
+        </div>
+
+        <!-- GITHUB TOKEN MANAGER -->
+        <div class="dev-panel">
+          <div class="dev-panel-title"><i class="uil uil-github-alt"></i> GitHub Token</div>
+          <div style="background:rgba(0,212,100,0.07);border:1px solid rgba(0,212,100,0.2);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--text-secondary);line-height:1.7">
+            <i class="uil uil-info-circle" style="color:#00d464;margin-right:6px"></i>
+            الـ Token يسمح لحفظ البيانات على GitHub — تعمل على <strong>كل الأجهزة</strong> والـ APK.
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:16px;font-size:12px;line-height:1.8;color:var(--text-secondary)">
+            <div style="font-weight:700;font-family:var(--font-display);margin-bottom:8px;color:var(--text-primary)">🔑 كيف تنشئ Token:</div>
+            1. افتح <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--accent2)">github.com/settings/tokens/new</a><br>
+            2. Name: <code style="background:var(--bg-secondary);padding:1px 5px;border-radius:4px">YOS Store</code><br>
+            3. Expiration: <code style="background:var(--bg-secondary);padding:1px 5px;border-radius:4px">No expiration</code><br>
+            4. Scopes: ✅ <code style="background:var(--bg-secondary);padding:1px 5px;border-radius:4px">repo</code><br>
+            5. انسخ الـ Token والصقه هنا
+          </div>
+          <div id="ghTokenStatus" style="display:none;padding:10px 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;margin-bottom:14px"></div>
+          <div class="form-group">
+            <label class="form-label">GitHub Personal Access Token</label>
+            <div style="position:relative">
+              <input class="form-input" type="password" id="ghTokenDashInput"
+                placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                style="font-size:12px;letter-spacing:1px;direction:ltr;padding-right:44px"/>
+              <i class="uil uil-eye" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);cursor:pointer;font-size:18px" onclick="togglePwField('ghTokenDashInput',this)"></i>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn-primary" style="flex:1;justify-content:center;padding:12px" onclick="saveGhToken()">
+              <i class="uil uil-save"></i> Save Token
+            </button>
+            <button class="btn-secondary" style="padding:12px 16px" onclick="testGhToken()">
+              <i class="uil uil-plug"></i> Test
+            </button>
+          </div>
+          <div id="ghTokenCurrent" style="margin-top:14px;font-size:11px;color:var(--text-muted)"></div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="footer" style="position:relative;z-index:1">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="cursor:default">
+        <div class="nav-logo-mark"><span>Y</span></div>
+        <div>
+          <div class="nav-logo-text">YOS Store</div>
+          <div class="nav-logo-sub">Digital Marketplace</div>
+        </div>
+      </div>
+      <p>The most premium digital marketplace for games, applications, tools, and digital creations — built by Younes, for everyone.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#"><i class="uil uil-github-alt"></i></a>
+        <a class="social-btn" href="#"><i class="uil uil-twitter-alt"></i></a>
+        <a class="social-btn" href="#"><i class="uil uil-instagram"></i></a>
+        <a class="social-btn" href="#"><i class="uil uil-discord"></i></a>
+        <a class="social-btn" href="#"><i class="uil uil-youtube"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Store</div>
+      <div class="footer-links">
+        <a class="footer-link" onclick="navigate('explore')">Explore All</a>
+        <a class="footer-link" onclick="navigate('games')">Games</a>
+        <a class="footer-link" onclick="navigate('apps')">Applications</a>
+        <a class="footer-link" onclick="navigate('tools')">Tools</a>
+        <a class="footer-link">New Releases</a>
+        <a class="footer-link">Top Rated</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Developer</div>
+      <div class="footer-links">
+        <a class="footer-link">About Younes</a>
+        <a class="footer-link">Portfolio</a>
+        <a class="footer-link">Blog</a>
+        <a class="footer-link">Changelog</a>
+        <a class="footer-link">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <div class="footer-links">
+        <a class="footer-link">Privacy Policy</a>
+        <a class="footer-link">Terms of Service</a>
+        <a class="footer-link">Licenses</a>
+        <a class="footer-link">DMCA</a>
+        <a class="footer-link">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 YOS Store by <a href="#">Younes</a>. All rights reserved.</span>
+    <span>Made with ❤️ — <a href="#">v1.0.0</a></span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     DEVELOPER ACCESS MODAL
+═══════════════════════════════════════ -->
+<div class="modal-overlay" id="devModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeDevModal()"><i class="uil uil-times"></i></button>
+    <div class="modal-icon">🔐</div>
+    <h2 class="modal-title">Developer Access</h2>
+    <p class="modal-sub">Enter the Developer Code to unlock YOS Control Center</p>
+    <div class="modal-input-wrap">
+      <input class="modal-input" type="password" id="devCodeInput" placeholder="Enter access code" maxlength="20"/>
+      <i class="uil uil-eye modal-eye" id="modalEye" onclick="toggleModalEye()"></i>
+    </div>
+    <!-- GitHub Token Field -->
+    <div style="margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <i class="uil uil-github-alt" style="color:var(--accent2);font-size:16px"></i>
+        <span style="font-size:12px;font-weight:700;font-family:var(--font-display);letter-spacing:-0.01em">GitHub Token</span>
+        <span style="font-size:9px;background:rgba(0,212,100,0.15);color:#00d464;border:1px solid rgba(0,212,100,0.3);border-radius:99px;padding:2px 7px;font-family:var(--font-mono)">للحفظ على كل الأجهزة</span>
+      </div>
+      <div style="position:relative">
+        <input class="modal-input" type="password" id="ghTokenInput"
+          placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+          style="font-size:12px;letter-spacing:1px;padding-right:44px;text-align:left;direction:ltr"/>
+        <i class="uil uil-eye" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);cursor:pointer;font-size:16px"
+          onclick="this.previousElementSibling.type=this.previousElementSibling.type==='password'?'text':'password';this.className='uil uil-eye'+(this.previousElementSibling.type==='text'?'-slash':'')"></i>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.6;text-align:right">
+        أنشئ Token من <a href="https://github.com/settings/tokens" target="_blank" style="color:var(--accent2)">github.com/settings/tokens</a><br>
+        صلاحيات مطلوبة: <code style="font-size:10px;background:var(--bg-card);padding:1px 5px;border-radius:4px">repo</code> ✓
+      </div>
+    </div>
+    <button class="modal-btn" onclick="checkDevCode()">
+      AUTHENTICATE <i class="uil uil-arrow-right"></i>
+    </button>
+    <div class="modal-status" id="modalStatus"></div>
+  </div>
+</div>
+
+<!-- DEVELOPER WELCOME SCREEN -->
+<div class="dev-welcome" id="devWelcome">
+  <div style="position:relative;display:flex;align-items:center;justify-content:center">
+    <div class="dev-welcome-ring">👑</div>
+  </div>
+  <div class="dev-welcome-title">Welcome Developer Younes</div>
+  <div class="dev-welcome-sub">Official Developer Mode unlocked • Control Center ready</div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<style>
+/* DEV TABS */
+.dev-tabs-nav{
+  display:flex;gap:4px;flex-wrap:wrap;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:6px;margin-bottom:24px;
+}
+.dev-tab-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 18px;border-radius:var(--radius-sm);
+  font-size:13px;font-weight:600;font-family:var(--font-display);
+  color:var(--text-secondary);transition:var(--transition);
+}
+.dev-tab-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px rgba(108,99,255,0.4);}
+.dev-tab-btn:hover:not(.active){background:var(--bg-card-hover);color:var(--text-primary);}
+.dev-tab-content{display:none;}
+.dev-tab-content.active{display:block;}
+/* Confirmation dialog */
+.confirm-overlay{
+  position:fixed;inset:0;z-index:9900;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.3s;
+}
+.confirm-overlay.active{opacity:1;pointer-events:all;}
+.confirm-box{
+  background:var(--bg-glass);border:1px solid var(--border-hover);
+  border-radius:var(--radius-lg);padding:32px;max-width:360px;width:90%;text-align:center;
+  backdrop-filter:blur(24px);transform:scale(0.92);transition:transform 0.3s;
+}
+.confirm-overlay.active .confirm-box{transform:scale(1);}
+.confirm-title{font-family:var(--font-display);font-weight:800;font-size:18px;margin-bottom:8px;}
+.confirm-sub{font-size:14px;color:var(--text-secondary);margin-bottom:24px;}
+.confirm-btns{display:flex;gap:10px;justify-content:center;}
+</style>
+<!-- CONFIRM DIALOG -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div style="font-size:36px;margin-bottom:12px" id="confirmIcon">⚠️</div>
+    <div class="confirm-title" id="confirmTitle">Are you sure?</div>
+    <div class="confirm-sub" id="confirmMsg">This action cannot be undone.</div>
+    <div class="confirm-btns">
+      <button class="btn-secondary" style="padding:10px 24px" onclick="closeConfirm()">Cancel</button>
+      <button id="confirmOkBtn" class="btn-primary" style="padding:10px 24px;background:linear-gradient(135deg,#ff4444,#ff6b6b)">Delete</button>
+    </div>
+  </div>
+</div>
+<script>
+/* ═══════════════════════════════════════════════════════
+   YOS STORE — GITHUB API ENGINE
+   All data stored in GitHub repo as data.json
+   Works on ALL devices & platforms simultaneously.
+═══════════════════════════════════════════════════════ */
+
+/* ── GITHUB CONFIG ── */
+const GH_USER  = 'younesbouzouiya';
+const GH_REPO  = 'YOS-Store';
+const GH_FILE  = 'data.json';
+const GH_BRANCH = 'main';
+const GH_RAW   = `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/${GH_FILE}`;
+const GH_API   = `https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${GH_FILE}`;
+
+/* ── DEFAULT CATEGORIES ── */
+const DEFAULT_CATEGORIES = [
+  {id:'cat_games',name:'Games',icon:'🎮',from:'#6c63ff',to:'#00d4ff'},
+  {id:'cat_apps',name:'Apps',icon:'📱',from:'#ff6b9d',to:'#ff9e0a'},
+  {id:'cat_tools',name:'Tools',icon:'🛠️',from:'#00d4ff',to:'#6c63ff'},
+  {id:'cat_web',name:'Web / HTML',icon:'🌐',from:'#ffd700',to:'#ff9e0a'},
+  {id:'cat_assets',name:'Assets',icon:'🎨',from:'#00d464',to:'#00d4ff'},
+  {id:'cat_ai',name:'AI Tools',icon:'🤖',from:'#ff6b9d',to:'#6c63ff'},
+  {id:'cat_software',name:'Software',icon:'📦',from:'#6c63ff',to:'#ff6b9d'},
+  {id:'cat_docs',name:'Documents',icon:'📚',from:'#00d4ff',to:'#00d464'},
+];
+
+const DEFAULT_DATA = {
+  products: [],
+  categories: DEFAULT_CATEGORIES,
+  announcements: [{id:'ann_1',icon:'📢',highlight:'مرحباً!',text:'YOS Store جاهز — أضف منتجاتك من لوحة المطور.',active:true,date:new Date().toLocaleDateString()}],
+  activity: [{msg:'YOS Store initialized',time:new Date().toLocaleString(),color:'#6c63ff'}]
+};
+
+/* ── LOCAL CACHE (للسرعة — يُحدَّث دائماً من GitHub) ── */
+let _storeData = null;  // in-memory cache
+let _ghFileSHA = null;  // needed to update file on GitHub
+let _ghToken   = null;  // set after dev login
+
+/* ── STORAGE HELPERS (للـ token فقط — لا تخزين بيانات) ── */
+function lsGet(key,fb=null){ try{const v=localStorage.getItem(key);return v?JSON.parse(v):fb;}catch(e){return fb;} }
+function lsSet(key,val){ try{localStorage.setItem(key,JSON.stringify(val));}catch(e){} }
+function getDevCode(){ return lsGet('yos_dev_code')||'younesDVP'; }
+function getGhToken(){ return _ghToken || lsGet('yos_gh_token') || ''; }
+function setGhToken(t){ _ghToken=t; lsSet('yos_gh_token',t); }
+
+/* ══════════════════════════════════════════════
+   GITHUB DATA ENGINE
+   - loadStoreData()  → fetch data.json from GitHub
+   - saveStoreData()  → push updated data.json to GitHub
+══════════════════════════════════════════════ */
+
+let _loadPromise = null;
+
+async function loadStoreData(force=false){
+  if(_storeData && !force) return _storeData;
+  if(_loadPromise) return _loadPromise;
+  _loadPromise = (async()=>{
+    try{
+      // Try GitHub API first (gives SHA for updates)
+      const token = getGhToken();
+      const headers = {'Accept':'application/vnd.github.v3+json'};
+      if(token) headers['Authorization'] = `token ${token}`;
+      const res = await fetch(GH_API+'?t='+Date.now(), {headers});
+      if(res.ok){
+        const meta = await res.json();
+        _ghFileSHA = meta.sha;
+        const content = atob(meta.content.replace(/\n/g,''));
+        _storeData = JSON.parse(content);
+      } else {
+        // Fallback: raw fetch (no auth needed, no SHA)
+        const raw = await fetch(GH_RAW+'?t='+Date.now());
+        if(raw.ok){ _storeData = await raw.json(); }
+        else { _storeData = JSON.parse(JSON.stringify(DEFAULT_DATA)); }
+      }
+    }catch(e){
+      console.warn('GitHub fetch failed, using defaults',e);
+      _storeData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+    }
+    // Ensure all keys exist
+    if(!_storeData.products)     _storeData.products=[];
+    if(!_storeData.categories)   _storeData.categories=DEFAULT_CATEGORIES;
+    if(!_storeData.announcements)_storeData.announcements=[];
+    if(!_storeData.activity)     _storeData.activity=[];
+    _loadPromise=null;
+    return _storeData;
+  })();
+  return _loadPromise;
+}
+
+async function saveStoreData(){
+  const token = getGhToken();
+  if(!token){
+    showToast('⚠️ GitHub Token غير مضبوط — البيانات محفوظة محلياً فقط','error');
+    return false;
+  }
+  try{
+    const json = JSON.stringify(_storeData, null, 2);
+    const bytes = new TextEncoder().encode(json);
+    const content = btoa(String.fromCharCode(...bytes));
+    const body = {
+      message: `YOS Store update — ${new Date().toLocaleString()}`,
+      content,
+      branch: GH_BRANCH
+    };
+    if(_ghFileSHA) body.sha = _ghFileSHA;
+    const res = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify(body)
+    });
+    if(res.ok){
+      const data = await res.json();
+      _ghFileSHA = data.content?.sha || _ghFileSHA;
+      return true;
+    } else {
+      const err = await res.json();
+      showToast('GitHub Error: '+( err.message||res.status),'error');
+      return false;
+    }
+  }catch(e){
+    showToast('Save failed: '+e.message,'error');
+    return false;
+  }
+}
+
+/* ── INIT STORE ── */
+async function initStore(){
+  showPageLoader(true);
+  await loadStoreData();
+  showPageLoader(false);
+}
+
+/* ── DATA GETTERS (sync — from cache) ── */
+function getProducts(){ return _storeData?.products||[]; }
+function getCategories(){ return _storeData?.categories||DEFAULT_CATEGORIES; }
+function getAnnouncements(){ return _storeData?.announcements||[]; }
+function getActivity(){ return _storeData?.activity||[]; }
+
+/* ── ACTIVITY LOG ── */
+const LOG_COLORS = ['#6c63ff','#00d4ff','#ff6b9d','#ffd700','#00d464'];
+let logColorIdx = 0;
+function addLog(msg){
+  if(!_storeData) return;
+  if(!_storeData.activity) _storeData.activity=[];
+  _storeData.activity.unshift({msg, time:new Date().toLocaleString(), color:LOG_COLORS[logColorIdx++ % LOG_COLORS.length]});
+  _storeData.activity = _storeData.activity.slice(0,50);
+}
+
+/* ── PAGE LOADER ── */
+function showPageLoader(show){
+  let el = document.getElementById('pageLoader');
+  if(!el){
+    el = document.createElement('div');
+    el.id='pageLoader';
+    el.style.cssText='position:fixed;inset:0;z-index:9999;background:var(--bg-primary);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 0.5s';
+    el.innerHTML=`
+      <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#6c63ff,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:26px;font-family:var(--font-display);font-weight:800;color:#fff;box-shadow:0 0 40px rgba(108,99,255,0.5);animation:modalIconPulse 1.5s ease infinite">Y</div>
+      <div style="font-family:var(--font-display);font-weight:800;font-size:22px;background:linear-gradient(135deg,#6c63ff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">YOS Store</div>
+      <div style="display:flex;gap:6px">
+        <div style="width:8px;height:8px;border-radius:50%;background:#6c63ff;animation:dotBounce 1s ease infinite"></div>
+        <div style="width:8px;height:8px;border-radius:50%;background:#00d4ff;animation:dotBounce 1s 0.2s ease infinite"></div>
+        <div style="width:8px;height:8px;border-radius:50%;background:#ff6b9d;animation:dotBounce 1s 0.4s ease infinite"></div>
+      </div>
+      <div style="font-size:13px;color:var(--text-muted)">جاري تحميل البيانات…</div>
+      <style>@keyframes dotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}</style>`;
+    document.body.appendChild(el);
+  }
+  if(show){ el.style.opacity='1'; el.style.pointerEvents='all'; }
+  else { el.style.opacity='0'; el.style.pointerEvents='none'; setTimeout(()=>el.remove(),500); }
+}
+
+/* ══════════════════════
+   NAVIGATION
+══════════════════════ */
+let currentPage = 'home';
+let prevPage = 'home';
+
+function navigate(page, productId){
+  // Guard: dev page requires active session
+  if(page === 'dev' && !devUnlocked){ openDevModal(); return; }
+  // Lock dev session when leaving dev page
+  if(currentPage === 'dev' && page !== 'dev'){ devUnlocked = false; }
+  if(page === currentPage && page !== 'product') return;
+  document.querySelectorAll('.nav-link').forEach(l=>{
+    l.classList.toggle('active', l.getAttribute('onclick') && l.getAttribute('onclick').includes(`'${page}'`));
+  });
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  if(page === 'product' && productId){
+    prevPage = currentPage;
+    renderProductDetail(productId);
+    document.getElementById('page-product').classList.add('active');
+    currentPage = 'product';
+  } else {
+    const el = document.getElementById(`page-${page}`);
+    if(el){ el.classList.add('active'); currentPage = page; }
+    if(page === 'explore') renderExplore();
+    if(page === 'games') renderCategoryPage('games','Games');
+    if(page === 'apps') renderCategoryPage('apps','Apps');
+    if(page === 'tools') renderCategoryPage('tools','Tools');
+    if(page === 'home') renderHome();
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ══════════════════════
+   RENDER HELPERS
+══════════════════════ */
+function badgeHTML(b){
+  if(!b) return '';
+  const map={new:'badge-new',hot:'badge-hot',free:'badge-free',update:'badge-update'};
+  return `<span class="product-card-badge ${map[b]||'badge-new'}">${b.toUpperCase()}</span>`;
+}
+function starsHTML(r){
+  const full=Math.floor(r); const half=r%1>=0.5; let s='';
+  for(let i=0;i<full;i++) s+='<i class="uil uil-star"></i>';
+  if(half) s+='<i class="uil uil-star-half-alt"></i>';
+  return s;
+}
+function formatDate(d){ return d ? new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—'; }
+
+function productCardHTML(p){
+  const iconContent = p.iconData
+    ? `<img src="${p.iconData}" alt="${p.name}"/>`
+    : (p.icon||'📦');
+  const bannerStyle = p.imageData
+    ? `background:linear-gradient(${p.gradient||'135deg,#6c63ff,#00d4ff'});`
+    : `background:linear-gradient(${p.gradient||'135deg,#6c63ff,#00d4ff'})`;
+  return `
+  <div class="product-card" onclick="navigate('product','${p.id}')">
+    <div class="product-card-banner" style="${bannerStyle}">
+      <div class="product-card-banner-overlay"></div>
+      ${p.imageData?`<img src="${p.imageData}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"/>`: ''}
+    </div>
+    <div class="product-card-body">
+      <div class="product-card-header">
+        <div class="product-card-icon">${iconContent}</div>
+        <div class="product-card-header-info">
+          <div class="product-card-category">${p.category}</div>
+          <div class="product-card-name">${p.name}</div>
+        </div>
+      </div>
+      <div class="product-card-desc">${p.desc||''}</div>
+      <div class="product-card-meta">
+        <div class="product-card-rating"><i class="uil uil-star"></i>${p.rating||'5.0'}</div>
+        <div class="product-card-downloads"><i class="uil uil-download-alt"></i> ${p.downloadCount||'0'}</div>
+      </div>
+    </div>
+    <div class="product-card-action">
+      <button class="btn-download" onclick="event.stopPropagation();downloadProduct('${p.id}')"><i class="uil uil-import"></i>Get</button>
+      <button class="btn-wishlist" onclick="event.stopPropagation();toggleWishlist(this)"><i class="uil uil-heart"></i></button>
+    </div>
+  </div>`;
+}
+
+function featuredCardHTML(p){
+  return `
+  <div class="featured-card" onclick="navigate('product','${p.id}')">
+    <div class="featured-card-bg" style="background:linear-gradient(${p.gradient||'135deg,#6c63ff,#00d4ff'})">
+      ${p.imageData?`<img src="${p.imageData}" alt=""/>`:''}
+    </div>
+    <div class="featured-card-overlay"></div>
+    <div class="featured-card-body">
+      <div class="featured-card-badge">${p.category}</div>
+      <div class="featured-card-title">${p.name}</div>
+      <div class="featured-card-desc">${(p.desc||'').substring(0,80)}…</div>
+      <div class="featured-card-meta">
+        <div class="featured-card-rating"><i class="uil uil-star"></i>${p.rating||'5.0'}</div>
+        <div class="featured-card-dl"><i class="uil uil-download-alt"></i> ${p.downloadCount||'0'}</div>
+        <button class="btn-download" onclick="event.stopPropagation();downloadProduct('${p.id}')" style="margin-left:auto"><i class="uil uil-import"></i> Get</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function emptyState(msg='No products yet'){
+  return `<div style="grid-column:1/-1;padding:60px;text-align:center;color:var(--text-muted)">
+    <div style="font-size:48px;margin-bottom:12px">📭</div>
+    <div style="font-size:15px">${msg}</div>
+  </div>`;
+}
+
+/* ══════════════════════
+   HOME PAGE
+══════════════════════ */
+/* ── Products with a downloadable file (file stored OR external link) ── */
+function getAvailableProducts(){
+  return getProducts().filter(p => p.hasFile || !!p.externalLink);
+}
+
+function renderHome(){
+  const PRODUCTS = getAvailableProducts();   // ← only products with files
+  const ALL = getProducts();                 // ← for stats counts
+  const activeAnn = getAnnouncements().find(a=>a.active);
+
+  // Announcement bar
+  const annBar = document.getElementById('announcementBar');
+  if(annBar){
+    if(activeAnn){
+      annBar.style.display='flex';
+      annBar.querySelector('.announcement-icon').textContent = activeAnn.icon||'📢';
+      annBar.querySelector('.announcement-text').innerHTML = activeAnn.highlight
+        ? `<strong>${activeAnn.highlight}</strong> ${activeAnn.text}`
+        : activeAnn.text;
+    } else {
+      annBar.style.display='none';
+    }
+  }
+
+  // Update categories count
+  document.querySelectorAll('.cat-count').forEach(el=>{
+    const parent = el.closest('.cat-card');
+    if(!parent) return;
+    const name = parent.querySelector('.cat-name')?.textContent;
+    const count = PRODUCTS.filter(p=>p.category===name).length;
+    el.textContent = count + ' product' + (count!==1?'s':'');
+  });
+
+  // Featured
+  const featEl = document.getElementById('featuredScroll');
+  if(featEl){
+    const featured = [...PRODUCTS].sort((a,b)=>(b.rating||5)-(a.rating||5)).slice(0,8);
+    featEl.innerHTML = featured.length ? featured.map(featuredCardHTML).join('') : `<div style="color:var(--text-muted);padding:40px;font-size:14px">No products yet — add from Developer Panel</div>`;
+  }
+
+  // Trending
+  const trendEl = document.getElementById('trendingGrid');
+  if(trendEl){
+    const trending = [...PRODUCTS].sort((a,b)=>parseInt(b.downloadCount||0)-parseInt(a.downloadCount||0)).slice(0,8);
+    trendEl.innerHTML = trending.length ? trending.map(productCardHTML).join('') : emptyState();
+  }
+
+  // New Releases
+  const newEl = document.getElementById('newReleasesScroll');
+  if(newEl){
+    const newest = [...PRODUCTS].sort((a,b)=>new Date(b.date||0)-new Date(a.date||0)).slice(0,8);
+    newEl.innerHTML = newest.length ? newest.map(p=>`<div style="flex-shrink:0;width:200px;scroll-snap-align:start">${productCardHTML(p)}</div>`).join('') : '';
+  }
+
+  // Popular
+  const popEl = document.getElementById('popularGrid');
+  if(popEl){
+    const popular = [...PRODUCTS].filter(p=>(p.rating||5)>=4.5).slice(0,6);
+    popEl.innerHTML = popular.length ? popular.map(productCardHTML).join('') : emptyState('No top-rated products yet');
+  }
+
+  // Hero stats — use full list for counts
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const key = el.getAttribute('data-count');
+    if(key==='products') el.textContent = ALL.length+'+';
+    else if(key==='downloads') el.textContent = ALL.reduce((s,p)=>s+parseInt(p.downloadCount||0),0).toLocaleString()+'+';
+    else if(key==='users') el.textContent = '0+';
+    else if(key==='satisfaction') el.textContent = '99%';
+  });
+
+  setTimeout(()=>{ observeCards(); }, 80);
+}
+
+/* ══════════════════════
+   EXPLORE
+══════════════════════ */
+function renderExplore(){
+  const PRODUCTS = getAvailableProducts();  // only products with files
+  const cat = document.getElementById('filterCat')?.value || '';
+  const sort = document.getElementById('filterSort')?.value || '';
+  let list = [...PRODUCTS];
+  if(cat) list = list.filter(p=>p.category===cat);
+  if(sort==='Newest') list.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));
+  else if(sort==='Top Rated') list.sort((a,b)=>(b.rating||5)-(a.rating||5));
+  else if(sort==='A–Z') list.sort((a,b)=>a.name.localeCompare(b.name));
+  else list.sort((a,b)=>parseInt(b.downloadCount||0)-parseInt(a.downloadCount||0));
+  const el = document.getElementById('exploreGrid');
+  if(el) el.innerHTML = list.length ? list.map(productCardHTML).join('') : emptyState('No products match your filters');
+
+  // Update filter categories dynamically
+  const filterCat = document.getElementById('filterCat');
+  if(filterCat){
+    const cats = getCategories();
+    const existingVals = [...filterCat.options].map(o=>o.value);
+    cats.forEach(c=>{ if(!existingVals.includes(c.name)){ const o=document.createElement('option'); o.value=c.name; o.textContent=c.name; filterCat.appendChild(o); } });
+  }
+  setTimeout(observeCards, 80);
+}
+
+function renderCategoryPage(gridId, catName){
+  const PRODUCTS = getAvailableProducts();  // only products with files
+  const list = PRODUCTS.filter(p=>p.category===catName || p.category.toLowerCase().includes(catName.toLowerCase().split(' ')[0]));
+  const el = document.getElementById(`${gridId}Grid`);
+  if(el) el.innerHTML = list.length ? list.map(productCardHTML).join('') : emptyState(`No ${catName} yet`);
+  setTimeout(observeCards, 80);
+}
+
+/* ══════════════════════
+   PRODUCT DETAIL
+══════════════════════ */
+function renderProductDetail(id){
+  const PRODUCTS = getProducts();
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  const features = p.features ? (Array.isArray(p.features)?p.features:p.features.split('\n').filter(Boolean)) : ['Premium quality product','Regular updates','Built by Younes (YOS)'];
+  const hasFile = p.hasFile || !!p.externalLink;
+  document.getElementById('productDetailContent').innerHTML = `
+  <div style="margin-bottom:24px">
+    <button class="btn-secondary" style="font-size:13px;padding:8px 16px" onclick="navigate('${prevPage||'home'}')">
+      <i class="uil uil-arrow-left"></i> Back
+    </button>
+  </div>
+  <div class="product-hero">
+    <div>
+      <div class="product-screenshots" style="background:linear-gradient(${p.gradient||'135deg,#6c63ff,#00d4ff'})">
+        ${p.imageData?`<img src="${p.imageData}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover"/>`:`<div class="product-screenshots-placeholder">${p.icon||'📦'}</div>`}
+      </div>
+    </div>
+    <div class="product-sidebar">
+      <div class="product-icon-row">
+        <div class="product-icon-lg" style="background:linear-gradient(${p.gradient||'135deg,#6c63ff,#00d4ff'})">${p.iconData?`<img src="${p.iconData}" alt=""/>`:p.imageData?`<img src="${p.imageData}" alt=""/>`:(p.icon||'📦')}</div>
+        <div class="product-icon-info">
+          <div class="product-icon-cat">${p.category}</div>
+          <div class="product-icon-name">${p.name}</div>
+          <div class="product-icon-dev">by Younes</div>
+        </div>
+      </div>
+      <div class="product-quick-stats">
+        <div class="quick-stat"><div class="quick-stat-val">${p.rating||'5.0'}</div><div class="quick-stat-label">Rating</div></div>
+        <div class="quick-stat"><div class="quick-stat-val">${p.downloadCount||0}</div><div class="quick-stat-label">Downloads</div></div>
+        <div class="quick-stat"><div class="quick-stat-val">${p.fileSize||'—'}</div><div class="quick-stat-label">Size</div></div>
+      </div>
+      ${hasFile
+        ? `<button class="btn-download-main" onclick="downloadProduct('${p.id}')"><i class="uil uil-${p.externalLink?'external-link-alt':'import'}"></i> ${p.externalLink?'Open Download Link':'Download Now'}</button>`
+        : `<button class="btn-download-main" style="background:linear-gradient(135deg,#555,#777);cursor:not-allowed" disabled><i class="uil uil-exclamation-triangle"></i> No File Attached</button>`
+      }
+      <div class="product-action-row">
+        <button class="btn-secondary" onclick="showToast('Added to wishlist ❤️','success')"><i class="uil uil-heart"></i> Wishlist</button>
+        <button class="btn-secondary" onclick="shareProduct('${p.id}')"><i class="uil uil-share-alt"></i> Share</button>
+      </div>
+      <div class="product-info-table">
+        <div class="info-row"><span class="info-label">Version</span><span class="info-val">${p.version||'1.0.0'}</span></div>
+        <div class="info-row"><span class="info-label">Platform</span><span class="info-val">${p.platform||'—'}</span></div>
+        <div class="info-row"><span class="info-label">Category</span><span class="info-val">${p.category}</span></div>
+        <div class="info-row"><span class="info-label">Released</span><span class="info-val">${formatDate(p.date)}</span></div>
+        <div class="info-row"><span class="info-label">Developer</span><span class="info-val" style="color:var(--accent2)">Younes (YOS)</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="product-tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'desc')">Description</button>
+    <button class="tab-btn" onclick="switchTab(this,'changelog')">Changelog</button>
+  </div>
+  <div id="tab-desc" class="tab-content active">
+    <div class="product-desc">
+      <p>${p.desc||''}</p>
+      <h3>Key Features</h3>
+      <div class="feature-list">
+        ${features.map(f=>`<div class="feature-item"><i class="uil uil-check-circle feature-check"></i><span class="feature-text">${f}</span></div>`).join('')}
+      </div>
+    </div>
+  </div>
+  <div id="tab-changelog" class="tab-content">
+    <div class="product-desc">
+      <h3>v${p.version||'1.0.0'} — Current</h3>
+      <p>Initial release.</p>
+    </div>
+  </div>`;
+}
+
+function switchTab(btn, tabId){
+  const container = btn.closest('.product-detail, #productDetailContent');
+  container.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  const el = document.getElementById(`tab-${tabId}`);
+  if(el) el.classList.add('active');
+}
+
+function shareProduct(id){
+  showToast('Link copied to clipboard! 📋','info');
+}
+
+
+
+/* ══════════════════════
+   DEVELOPER DASHBOARD
+══════════════════════ */
+function renderDevDashboard(){
+  renderDevStats();
+  renderDevProductList();
+  renderAnnList();
+  renderCatList();
+  renderActivityLog();
+  populateFilterCats();
+}
+
+function renderDevStats(){
+  const PRODUCTS = getProducts();
+  const totalDL = PRODUCTS.reduce((s,p)=>s+parseInt(p.downloadCount||0),0);
+  const avgRating = PRODUCTS.length ? (PRODUCTS.reduce((s,p)=>s+(parseFloat(p.rating)||5),0)/PRODUCTS.length).toFixed(2) : '—';
+  document.getElementById('devStatsGrid').innerHTML = `
+    <div class="dev-stat-card">
+      <div class="dev-stat-icon" style="background:rgba(108,99,255,0.15)">📦</div>
+      <div class="dev-stat-num">${PRODUCTS.length}</div>
+      <div class="dev-stat-label">Total Products</div>
+    </div>
+    <div class="dev-stat-card">
+      <div class="dev-stat-icon" style="background:rgba(0,212,255,0.15)">⬇️</div>
+      <div class="dev-stat-num">${totalDL.toLocaleString()}</div>
+      <div class="dev-stat-label">Total Downloads</div>
+    </div>
+    <div class="dev-stat-card">
+      <div class="dev-stat-icon" style="background:rgba(245,200,66,0.15)">⭐</div>
+      <div class="dev-stat-num">${avgRating}</div>
+      <div class="dev-stat-label">Avg. Rating</div>
+    </div>
+    <div class="dev-stat-card">
+      <div class="dev-stat-icon" style="background:rgba(0,212,100,0.15)">📂</div>
+      <div class="dev-stat-num">${getCategories().length}</div>
+      <div class="dev-stat-label">Categories</div>
+    </div>
+    <div class="dev-stat-card">
+      <div class="dev-stat-icon" style="background:rgba(255,107,157,0.15)">📢</div>
+      <div class="dev-stat-num">${getAnnouncements().filter(a=>a.active).length}</div>
+      <div class="dev-stat-label">Active Announcements</div>
+    </div>
+    <div class="dev-stat-card">
+      <div class="dev-stat-icon" style="background:rgba(108,99,255,0.15)">📋</div>
+      <div class="dev-stat-num">${getActivity().length}</div>
+      <div class="dev-stat-label">Log Entries</div>
+    </div>`;
+}
+
+function renderDevProductList(){
+  const PRODUCTS = getProducts();
+  const list = document.getElementById('devProductList');
+  const count = document.getElementById('devProductCount');
+  if(count) count.textContent = `(${PRODUCTS.length} products)`;
+  if(!list) return;
+  if(!PRODUCTS.length){
+    list.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted)"><div style="font-size:40px;margin-bottom:12px">📭</div><div>No products yet. Go to <strong>Add Product</strong> tab.</div></div>`;
+    return;
+  }
+  list.innerHTML = PRODUCTS.map(p=>`
+    <div class="dev-product-item" id="devitem_${p.id}">
+      <div class="dev-product-icon" style="background:linear-gradient(${p.gradient||'135deg,#6c63ff,#00d4ff'})">${p.iconData?`<img src="${p.iconData}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/>`:p.imageData?`<img src="${p.imageData}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/>`:(p.icon||'📦')}</div>
+      <div class="dev-product-info">
+        <div class="dev-product-name">${p.name}</div>
+        <div class="dev-product-meta">${p.category} • v${p.version||'1.0'} • ${p.downloadCount||0} downloads • ${p.hasFile?'✅ File stored':p.externalLink?'🔗 External link':'❌ No file'} ${p.iconData?'• 🖼️ Icon':''}</div>
+      </div>
+      <div class="dev-product-actions">
+        <button class="btn-edit" title="Edit" onclick="editProduct('${p.id}')"><i class="uil uil-edit"></i></button>
+        <button class="btn-del" title="Delete" onclick="confirmDeleteProduct('${p.id}')"><i class="uil uil-trash-alt"></i></button>
+      </div>
+    </div>`).join('');
+}
+
+/* ── ADD / EDIT PRODUCT ── */
+async function saveProduct(){
+  const name = document.getElementById('fName').value.trim();
+  const desc = document.getElementById('fDesc').value.trim();
+  if(!name){ showToast('Product name is required','error'); return; }
+  if(!desc){ showToast('Description is required','error'); return; }
+
+  const editId = document.getElementById('editProductId').value;
+  const PRODUCTS = getProducts();
+  const c1 = document.getElementById('fColor1').value;
+  const c2 = document.getElementById('fColor2').value;
+  const extLink = document.getElementById('fExternalLink').value.trim();
+
+  const productId = editId || 'p_'+Date.now();
+
+  const productData = {
+    id: productId,
+    name, desc,
+    category: document.getElementById('fCat').value,
+    version: document.getElementById('fVersion').value||'1.0.0',
+    platform: document.getElementById('fPlatform').value||'—',
+    icon: document.getElementById('fIcon').value||'📦',
+    gradient: `135deg,${c1},${c2}`,
+    features: document.getElementById('fFeatures').value||'',
+    rating: editId ? (PRODUCTS.find(p=>p.id===editId)?.rating||'5.0') : '5.0',
+    downloadCount: editId ? (PRODUCTS.find(p=>p.id===editId)?.downloadCount||0) : 0,
+    date: editId ? (PRODUCTS.find(p=>p.id===editId)?.date||new Date().toISOString()) : new Date().toISOString(),
+  };
+
+  // File: base64 blob > external link > existing
+  if(uploadedFileBlob){
+    // Convert Blob → base64 and store inline in product data
+    try{
+      const b64 = await blobToBase64(uploadedFileBlob);
+      productData.fileData    = b64;
+      productData.fileName    = uploadedFileName;
+      productData.fileSize    = uploadedFileSize;
+      productData.fileMime    = uploadedFileBlob.type || 'application/octet-stream';
+      productData.hasFile     = true;
+      productData.externalLink= null;
+    }catch(e){ showToast('File read failed: '+e.message,'error'); return; }
+  } else if(extLink){
+    productData.externalLink = extLink;
+    productData.hasFile      = false;
+    productData.fileName     = extLink.split('/').pop().split('?')[0]||'external';
+  } else if(editId){
+    const existing = PRODUCTS.find(p=>p.id===editId);
+    if(existing){
+      productData.hasFile      = existing.hasFile;
+      productData.fileName     = existing.fileName;
+      productData.fileSize     = existing.fileSize;
+      productData.fileMime     = existing.fileMime;
+      productData.fileData     = existing.fileData;
+      productData.externalLink = existing.externalLink;
+    }
+  }
+
+  if(uploadedImageData){ productData.imageData=uploadedImageData; }
+  else if(editId){ const ex=PRODUCTS.find(p=>p.id===editId); if(ex?.imageData) productData.imageData=ex.imageData; }
+
+  if(uploadedIconData){ productData.iconData=uploadedIconData; }
+  else if(editId){ const ex=PRODUCTS.find(p=>p.id===editId); if(ex?.iconData) productData.iconData=ex.iconData; }
+
+  // Save to _storeData
+  if(editId){
+    _storeData.products = _storeData.products.map(p=>p.id===editId?productData:p);
+    addLog(`Edited product: "${name}"`);
+  } else {
+    _storeData.products.push(productData);
+    addLog(`Published new product: "${name}"`);
+  }
+
+  // Show saving indicator
+  const btn = document.querySelector('#devTab-add .btn-primary');
+  const origText = btn?.innerHTML;
+  if(btn) btn.innerHTML = '<i class="uil uil-spinner-alt"></i> Saving to GitHub…';
+
+  const ok = await saveStoreData();
+
+  if(btn) btn.innerHTML = origText;
+
+  if(ok){
+    showToast(editId ? `"${name}" updated ✅` : `"${name}" published to store 🎉`,'success');
+  } else {
+    showToast('حُفظ محلياً فقط — تحقق من GitHub Token','error');
+  }
+
+  resetProductForm();
+  renderDevDashboard();
+  renderHome();
+  switchDevTab('products');
+}
+
+async function editProduct(id){
+  const PRODUCTS = getProducts();
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  switchDevTab('add');
+  document.getElementById('editProductId').value = id;
+  document.getElementById('addProductTitle').textContent = 'Edit Product';
+  document.getElementById('publishBtnText').textContent = 'Save Changes';
+  document.getElementById('fName').value = p.name||'';
+  document.getElementById('fDesc').value = p.desc||'';
+  document.getElementById('fVersion').value = p.version||'';
+  document.getElementById('fPlatform').value = p.platform||'';
+  document.getElementById('fIcon').value = p.icon||'';
+  document.getElementById('fFeatures').value = Array.isArray(p.features)?p.features.join('\n'):(p.features||'');
+  const cats = document.getElementById('fCat').options;
+  for(let o of cats){ if(o.value===p.category){ o.selected=true; break; } }
+  if(p.gradient){
+    const parts = p.gradient.replace('135deg,','').split(',');
+    if(parts[0]) document.getElementById('fColor1').value = parts[0].trim();
+    if(parts[1]) document.getElementById('fColor2').value = parts[1].trim();
+  }
+  // Show existing file info
+  if(p.hasFile){
+    document.getElementById('uploadZone').style.display='none';
+    document.getElementById('fileAttachedBar').style.display='flex';
+    document.getElementById('fileAttachedName').textContent = p.fileName||'File attached';
+    document.getElementById('fileAttachedSize').textContent = (p.fileSize||'stored')+' • stored in device';
+  } else if(p.externalLink){
+    document.getElementById('fExternalLink').value = p.externalLink;
+    document.getElementById('extLinkBar').style.display='flex';
+    document.getElementById('extLinkPreview').textContent = p.externalLink;
+  }
+  if(p.imageData){
+    uploadedImageData=p.imageData;
+    document.getElementById('imagePreview').style.display='block';
+    document.getElementById('imagePreviewImg').src=p.imageData;
+    document.getElementById('imageFileName').textContent='Current image loaded';
+  }
+  if(p.iconData){
+    uploadedIconData=p.iconData;
+    document.getElementById('iconPreviewPng').src=p.iconData;
+    document.getElementById('iconPreviewPng').style.display='block';
+    document.getElementById('iconPreviewEmoji').style.display='none';
+    document.getElementById('iconPngLabel').textContent='✅ Icon loaded';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function resetProductForm(){
+  document.getElementById('editProductId').value='';
+  document.getElementById('addProductTitle').textContent='Add New Product';
+  document.getElementById('publishBtnText').textContent='Publish Product';
+  document.getElementById('fName').value='';
+  document.getElementById('fDesc').value='';
+  document.getElementById('fVersion').value='';
+  document.getElementById('fPlatform').value='';
+  document.getElementById('fIcon').value='';
+  document.getElementById('fFeatures').value='';
+  document.getElementById('fExternalLink').value='';
+  document.getElementById('extLinkBar').style.display='none';
+  document.getElementById('uploadZone').style.display='';
+  document.getElementById('fileAttachedBar').style.display='none';
+  document.getElementById('imageFileName').textContent='PNG, JPG, WebP recommended';
+  document.getElementById('imagePreview').style.display='none';
+  document.getElementById('iconPreviewPng').style.display='none';
+  document.getElementById('iconPreviewEmoji').style.display='block';
+  document.getElementById('iconPreviewEmoji').textContent='📦';
+  document.getElementById('iconPngLabel').textContent='Upload Icon PNG';
+  uploadedFileBlob=null; uploadedFileName=null; uploadedFileSize=null;
+  uploadedImageData=null; uploadedIconData=null;
+}
+
+function confirmDeleteProduct(id){
+  const p = getProducts().find(x=>x.id===id);
+  if(!p) return;
+  showConfirm(`Delete "${p.name}"?`, 'This product will be permanently removed from the store.','🗑️',async ()=>{
+    _storeData.products = _storeData.products.filter(x=>x.id!==id);
+    addLog(`Deleted product: "${p.name}"`);
+    const ok = await saveStoreData();
+    showToast(ok ? `"${p.name}" deleted` : `"${p.name}" deleted locally`,'error');
+    renderDevDashboard();
+    renderHome();
+  });
+}
+
+/* ══════════════════════════════════════════════
+   BLOB ↔ BASE64 HELPERS
+══════════════════════════════════════════════ */
+function blobToBase64(blob){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result);
+    r.onerror=()=>rej(r.error);
+    r.readAsDataURL(blob);
+  });
+}
+
+/* ══════════════════════
+   DOWNLOAD
+══════════════════════ */
+async function downloadProduct(id){
+  const PRODUCTS = getProducts();
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p){ showToast('Product not found','error'); return; }
+
+  // Update download count
+  p.downloadCount = (parseInt(p.downloadCount)||0)+1;
+  if(_storeData) _storeData.products = _storeData.products.map(x=>x.id===id?p:x);
+  saveStoreData(); // fire-and-forget
+
+  // External link
+  if(p.externalLink){
+    addLog(`"${p.name}" download via external link (total: ${p.downloadCount})`);
+    showToast(`Opening download link… 🔗`,'success');
+    window.open(p.externalLink,'_blank');
+    return;
+  }
+
+  // Base64 file stored inline
+  if(p.fileData){
+    try{
+      // fileData is a data-URL: "data:mime;base64,XXXX"
+      const arr = p.fileData.split(',');
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const raw  = atob(arr[1]);
+      const bytes= new Uint8Array(raw.length);
+      for(let i=0;i<raw.length;i++) bytes[i]=raw.charCodeAt(i);
+      const blob = new Blob([bytes],{type:mime});
+      const a    = document.createElement('a');
+      a.href     = URL.createObjectURL(blob);
+      a.download = p.fileName || p.name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+      addLog(`"${p.name}" downloaded (total: ${p.downloadCount})`);
+      showToast(`Downloading ${p.name}… 📥`,'success');
+    }catch(e){ showToast('Download failed: '+e.message,'error'); }
+    return;
+  }
+
+  showToast('No file attached to this product','error');
+}
+
+/* ══════════════════════
+   UPLOAD ZONE SETUP
+══════════════════════ */
+let uploadedFileName = null;
+let uploadedFileSize = null;
+let uploadedFileBlob = null;   // raw Blob — stored in IDB, not base64
+let uploadedImageData = null;  // banner (small image) — base64 ok
+let uploadedIconData = null;   // icon PNG — base64 ok
+
+function setupUploadZones(){
+  const zone = document.getElementById('uploadZone');
+  const input = document.getElementById('fileInput');
+  const imgZone = document.getElementById('imageUploadZone');
+  const imgInput = document.getElementById('imageInput');
+  const iconInput = document.getElementById('iconPngInput');
+  const extInput = document.getElementById('fExternalLink');
+  if(!zone||!input) return;
+
+  // Main file
+  zone.onclick = ()=>input.click();
+  zone.ondragover = e=>{ e.preventDefault(); zone.classList.add('dragging'); };
+  zone.ondragleave = ()=>zone.classList.remove('dragging');
+  zone.ondrop = e=>{ e.preventDefault(); zone.classList.remove('dragging'); handleFileUpload(e.dataTransfer.files[0]); };
+  input.onchange = ()=>{ if(input.files[0]) handleFileUpload(input.files[0]); };
+
+  // Banner image
+  if(imgZone&&imgInput){
+    imgZone.onclick = ()=>imgInput.click();
+    imgZone.ondragover = e=>{ e.preventDefault(); imgZone.classList.add('dragging'); };
+    imgZone.ondragleave = ()=>imgZone.classList.remove('dragging');
+    imgZone.ondrop = e=>{ e.preventDefault(); imgZone.classList.remove('dragging'); handleImageUpload(e.dataTransfer.files[0]); };
+    imgInput.onchange = ()=>{ if(imgInput.files[0]) handleImageUpload(imgInput.files[0]); };
+  }
+
+  // Icon PNG
+  if(iconInput){
+    iconInput.onchange = ()=>{ if(iconInput.files[0]) handleIconUpload(iconInput.files[0]); };
+  }
+
+  // External link live preview
+  if(extInput){
+    extInput.addEventListener('input', ()=>{
+      const v = extInput.value.trim();
+      const bar = document.getElementById('extLinkBar');
+      const prev = document.getElementById('extLinkPreview');
+      if(v && (v.startsWith('http')||v.startsWith('/'))){
+        bar.style.display='flex'; prev.textContent=v;
+        // If external link set, disable file upload area visually
+      } else {
+        bar.style.display='none';
+      }
+    });
+  }
+
+  // Sync emoji in icon preview with fIcon input
+  const fIcon = document.getElementById('fIcon');
+  if(fIcon) fIcon.addEventListener('input', ()=>{
+    if(!uploadedIconData) document.getElementById('iconPreviewEmoji').textContent = fIcon.value||'📦';
+  });
+}
+
+function handleFileUpload(file){
+  if(!file) return;
+  // No size limit — IDB handles it
+  uploadedFileBlob = file;
+  uploadedFileName = file.name;
+  const kb = file.size/1024;
+  uploadedFileSize = kb>=1024 ? (kb/1024).toFixed(1)+' MB' : Math.round(kb)+' KB';
+  // Show attached bar, hide zone
+  document.getElementById('uploadZone').style.display='none';
+  const bar = document.getElementById('fileAttachedBar');
+  bar.style.display='flex';
+  document.getElementById('fileAttachedName').textContent = file.name;
+  document.getElementById('fileAttachedSize').textContent = uploadedFileSize + ' • ready to publish';
+  // Clear external link if file chosen
+  document.getElementById('fExternalLink').value='';
+  document.getElementById('extLinkBar').style.display='none';
+  showToast(`File ready: ${file.name} (${uploadedFileSize})`,'success');
+}
+
+async function removeAttachedFile(){
+  const editId = document.getElementById('editProductId').value;
+  if(editId && _storeData){
+    const p = _storeData.products.find(x=>x.id===editId);
+    if(p){
+      p.hasFile=false; p.fileName=null; p.fileSize=null;
+      p.fileData=null; p.fileMime=null;
+      await saveStoreData();
+      renderDevProductList();
+    }
+    showToast('File deleted from store ✅','success');
+  } else {
+    showToast('File removed','info');
+  }
+  uploadedFileBlob=null; uploadedFileName=null; uploadedFileSize=null;
+  document.getElementById('uploadZone').style.display='';
+  document.getElementById('fileAttachedBar').style.display='none';
+  document.getElementById('fileInput').value='';
+}
+
+function removeExternalLink(){
+  document.getElementById('fExternalLink').value='';
+  document.getElementById('extLinkBar').style.display='none';
+  showToast('External link removed','info');
+}
+
+function removeImageFile(){
+  uploadedImageData=null;
+  document.getElementById('imagePreview').style.display='none';
+  document.getElementById('imagePreviewImg').src='';
+  document.getElementById('imageFileName').textContent='PNG, JPG, WebP recommended';
+  document.getElementById('imageInput').value='';
+  showToast('Banner image removed','info');
+}
+
+function handleImageUpload(file){
+  if(!file||!file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = e=>{
+    uploadedImageData = e.target.result;
+    document.getElementById('imageFileName').textContent = `✅ ${file.name}`;
+    document.getElementById('imagePreview').style.display='block';
+    document.getElementById('imagePreviewImg').src=e.target.result;
+    showToast(`Banner ready: ${file.name}`,'success');
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleIconUpload(file){
+  if(!file||!file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = e=>{
+    uploadedIconData = e.target.result;
+    document.getElementById('iconPreviewPng').src = e.target.result;
+    document.getElementById('iconPreviewPng').style.display = 'block';
+    document.getElementById('iconPreviewEmoji').style.display = 'none';
+    document.getElementById('iconPngLabel').textContent = `✅ ${file.name}`;
+    showToast(`Icon ready: ${file.name}`,'success');
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ── ANNOUNCEMENTS ── */
+async function publishAnnouncement(){
+  const text = document.getElementById('annText').value.trim();
+  if(!text){ showToast('Announcement text required','error'); return; }
+  if(!_storeData.announcements) _storeData.announcements=[];
+  _storeData.announcements.forEach(a=>a.active=false);
+  _storeData.announcements.unshift({
+    id:'ann_'+Date.now(),
+    icon: document.getElementById('annIcon').value||'📢',
+    highlight: document.getElementById('annHighlight').value.trim(),
+    text, active:true,
+    date: new Date().toLocaleDateString()
+  });
+  addLog(`Published announcement: "${text.substring(0,40)}…"`);
+  const ok = await saveStoreData();
+  showToast(ok?'Announcement published ✅':'Saved locally only','success');
+  document.getElementById('annText').value='';
+  document.getElementById('annHighlight').value='';
+  renderAnnList(); renderHome(); renderDevStats();
+}
+
+function renderAnnList(){
+  const anns = getAnnouncements();
+  const el = document.getElementById('annList');
+  if(!el) return;
+  if(!anns.length){ el.innerHTML=`<div style="color:var(--text-muted);padding:20px;text-align:center">No announcements yet</div>`; return; }
+  el.innerHTML = anns.map(a=>`
+    <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:var(--bg-card);border:1px solid var(--border);margin-bottom:8px">
+      <span style="font-size:20px">${a.icon||'📢'}</span>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600">${a.highlight?`<strong>${a.highlight}</strong> `:''}${a.text.substring(0,60)}${a.text.length>60?'…':''}</div>
+        <div style="font-size:11px;color:var(--text-muted)">${a.date} ${a.active?'• <span style="color:#00d464">Active</span>':'• Inactive'}</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="btn-edit" title="${a.active?'Deactivate':'Activate'}" onclick="toggleAnnouncement('${a.id}')"><i class="uil uil-${a.active?'eye-slash':'eye'}"></i></button>
+        <button class="btn-del" title="Delete" onclick="deleteAnnouncement('${a.id}')"><i class="uil uil-trash-alt"></i></button>
+      </div>
+    </div>`).join('');
+}
+
+function updateAnnPreview(){
+  const icon = document.getElementById('annIcon').value||'📢';
+  const hl = document.getElementById('annHighlight').value;
+  const txt = document.getElementById('annText').value||'Your announcement will appear here.';
+  document.getElementById('annPreviewIcon').textContent = icon;
+  document.getElementById('annPreviewText').innerHTML = hl?`<strong>${hl}</strong> ${txt}`:txt;
+}
+
+// Live preview for announcement — wired in DOMContentLoaded
+
+async function toggleAnnouncement(id){
+  if(!_storeData?.announcements) return;
+  const a = _storeData.announcements.find(x=>x.id===id);
+  if(!a) return;
+  if(!a.active) _storeData.announcements.forEach(x=>x.active=false);
+  a.active = !a.active;
+  addLog(`${a.active?'Activated':'Deactivated'} announcement`);
+  await saveStoreData();
+  renderAnnList(); renderHome(); renderDevStats();
+  showToast(a.active?'Announcement activated ✅':'Announcement hidden','info');
+}
+
+async function deleteAnnouncement(id){
+  showConfirm('Delete announcement?','This cannot be undone.','📢',async()=>{
+    _storeData.announcements = _storeData.announcements.filter(x=>x.id!==id);
+    addLog('Deleted an announcement');
+    await saveStoreData();
+    renderAnnList(); renderHome(); renderDevStats();
+    showToast('Announcement deleted','info');
+  });
+}
+
+/* ── CATEGORIES ── */
+async function saveCategory(){
+  const name = document.getElementById('catName').value.trim();
+  if(!name){ showToast('Category name required','error'); return; }
+  const cats = getCategories();
+  if(cats.find(c=>c.name===name)){ showToast('Category already exists','error'); return; }
+  const c1=document.getElementById('catColor1').value;
+  const c2=document.getElementById('catColor2').value;
+  if(!_storeData.categories) _storeData.categories=[];
+  _storeData.categories.push({id:'cat_'+Date.now(), name, icon:document.getElementById('catIcon').value||'📂', from:c1, to:c2});
+  addLog(`Added category: "${name}"`);
+  await saveStoreData();
+  showToast(`Category "${name}" added ✅`,'success');
+  document.getElementById('catName').value='';
+  document.getElementById('catIcon').value='';
+  renderCatList(); renderHomeCats(); renderDevStats(); populateFilterCats();
+}
+
+function renderCatList(){
+  const cats = getCategories();
+  const el = document.getElementById('catList');
+  if(!el) return;
+  el.innerHTML = cats.map(c=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:var(--bg-card);border:1px solid var(--border)">
+      <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,${c.from},${c.to});display:flex;align-items:center;justify-content:center;font-size:18px">${c.icon}</div>
+      <div style="flex:1;font-size:13px;font-weight:600">${c.name}
+        <div style="font-size:11px;color:var(--text-muted)">${getProducts().filter(p=>p.category===c.name).length} products</div>
+      </div>
+      ${!DEFAULT_CATEGORIES.find(d=>d.id===c.id)?`<button class="btn-del" onclick="deleteCategory('${c.id}')"><i class="uil uil-trash-alt"></i></button>`:'<span style="font-size:10px;color:var(--text-muted)">Default</span>'}
+    </div>`).join('');
+}
+
+async function deleteCategory(id){
+  showConfirm('Delete category?','Products in this category will remain but may appear uncategorized.','🗂️',async()=>{
+    _storeData.categories = _storeData.categories.filter(c=>c.id!==id);
+    addLog('Deleted a category');
+    await saveStoreData();
+    renderCatList(); renderHomeCats(); renderDevStats(); populateFilterCats();
+    showToast('Category deleted','info');
+  });
+}
+
+function renderHomeCats(){
+  const cats = getCategories();
+  const PRODUCTS = getProducts();
+  const grid = document.querySelector('.categories-grid');
+  if(!grid) return;
+  grid.innerHTML = cats.map(c=>`
+    <div class="cat-card" style="--cat-from:${c.from};--cat-to:${c.to}" onclick="navigate('explore')">
+      <div class="cat-icon">${c.icon}</div>
+      <div class="cat-name">${c.name}</div>
+      <div class="cat-count">${PRODUCTS.filter(p=>p.category===c.name).length} products</div>
+    </div>`).join('');
+}
+
+function populateFilterCats(){
+  const filterCat = document.getElementById('filterCat');
+  if(!filterCat) return;
+  const cats = getCategories();
+  filterCat.innerHTML = `<option value="">All Categories</option>` + cats.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+}
+
+/* ── ACTIVITY LOG ── */
+function renderActivityLog(){
+  const logs = getActivity();
+  const el = document.getElementById('activityLogList');
+  if(!el) return;
+  if(!logs.length){ el.innerHTML=`<div style="color:var(--text-muted);padding:20px;text-align:center">No activity yet</div>`; return; }
+  el.innerHTML = logs.map(l=>`
+    <div class="activity-item">
+      <div class="activity-dot" style="background:${l.color||'#6c63ff'}"></div>
+      <div class="activity-text">${l.msg}</div>
+      <div class="activity-time">${l.time}</div>
+    </div>`).join('');
+}
+
+async function clearActivityLog(){
+  showConfirm('Clear activity log?','All log entries will be deleted.','🗑️',async()=>{
+    if(_storeData) _storeData.activity=[];
+    await saveStoreData();
+    renderActivityLog(); renderDevStats();
+    showToast('Activity log cleared','info');
+  });
+}
+
+/* ── DEV TABS SWITCH ── */
+function switchDevTab(tab){
+  document.querySelectorAll('.dev-tab-btn').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${tab}'`));
+  });
+  document.querySelectorAll('.dev-tab-content').forEach(t=>t.classList.remove('active'));
+  const el = document.getElementById(`devTab-${tab}`);
+  if(el) el.classList.add('active');
+  if(tab==='products') renderDevProductList();
+  if(tab==='activity') renderActivityLog();
+  if(tab==='password'){ updateGhTokenDisplay(); const el=document.getElementById('ghTokenDashInput'); if(el&&getGhToken()) el.value=getGhToken(); }
+}
+
+/* ══════════════════════
+   DEVELOPER ACCESS
+══════════════════════ */
+const DEV_CODE_DEFAULT = 'younesDVP';
+function getDevCode(){ return lsGet('yos_dev_code') || DEV_CODE_DEFAULT; }
+let holdInterval = null;
+let holdPct = 0;
+let devUnlocked = false;
+let failedAttempts = 0;
+const logoMark = document.getElementById('logoMark');
+const holdRing = document.getElementById('holdRing');
+
+logoMark.addEventListener('mousedown', startHold);
+logoMark.addEventListener('touchstart', startHold, {passive:true});
+logoMark.addEventListener('mouseup', cancelHold);
+logoMark.addEventListener('mouseleave', cancelHold);
+logoMark.addEventListener('touchend', cancelHold);
+
+function startHold(){
+  if(devUnlocked){ navigate('dev'); return; }
+  holdPct=0; holdRing.classList.add('active');
+  holdInterval = setInterval(()=>{
+    holdPct = Math.min(holdPct+(100/30),100);
+    holdRing.style.setProperty('--hold-pct', holdPct+'%');
+    if(holdPct>=100){ cancelHold(); openDevModal(); }
+  },100);
+}
+function cancelHold(){ clearInterval(holdInterval); holdRing.classList.remove('active'); holdRing.style.setProperty('--hold-pct','0%'); holdPct=0; }
+function openDevModal(){
+  document.getElementById('devModal').classList.add('active');
+  document.getElementById('devCodeInput').value='';
+  document.getElementById('modalStatus').style.display='none';
+  // Pre-fill token if saved
+  const saved = getGhToken();
+  if(saved) document.getElementById('ghTokenInput').value=saved;
+  setTimeout(()=>document.getElementById('devCodeInput').focus(),400);
+}
+function closeDevModal(){ document.getElementById('devModal').classList.remove('active'); }
+function toggleModalEye(){ const inp=document.getElementById('devCodeInput'); const eye=document.getElementById('modalEye'); if(inp.type==='password'){inp.type='text';eye.className='uil uil-eye-slash modal-eye';}else{inp.type='password';eye.className='uil uil-eye modal-eye';} }
+document.getElementById('devCodeInput').addEventListener('keydown', e=>{ if(e.key==='Enter') checkDevCode(); });
+
+function checkDevCode(){
+  const val=document.getElementById('devCodeInput').value;
+  const token=document.getElementById('ghTokenInput').value.trim();
+  const status=document.getElementById('modalStatus');
+  if(val===getDevCode()){
+    // Save token if provided
+    if(token){ setGhToken(token); }
+    status.textContent='✓ Authentication successful — loading control center…';
+    status.className='modal-status success'; status.style.display='block';
+    setTimeout(()=>{ closeDevModal(); showDevWelcome(); },800);
+  } else {
+    failedAttempts++;
+    status.textContent=`✗ Access Denied — Invalid developer code. (Attempt ${failedAttempts})`;
+    status.className='modal-status error'; status.style.display='block';
+    document.getElementById('devCodeInput').value='';
+    const modal=document.querySelector('.modal');
+    modal.style.transform='translateX(-10px)';
+    setTimeout(()=>{ modal.style.transform='translateX(10px)'; },150);
+    setTimeout(()=>{ modal.style.transform=''; },300);
+  }
+}
+
+async function showDevWelcome(){
+  const welcome=document.getElementById('devWelcome');
+  welcome.classList.add('active');
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div'); p.className='dev-particle';
+    const angle=(i/20)*Math.PI*2; const dist=120+Math.random()*80;
+    const x=Math.cos(angle)*dist+'px'; const y=Math.sin(angle)*dist+'px';
+    const colors=['#6c63ff','#00d4ff','#ff6b9d','#ffd700','#00d464'];
+    p.style.cssText=`background:${colors[i%5]};top:50%;left:50%;--fly:translate(${x},${y});animation-delay:${Math.random()*0.3}s`;
+    welcome.appendChild(p);
+  }
+  // Load fresh data from GitHub while welcome shows
+  await loadStoreData(true);
+  setTimeout(()=>{
+    welcome.classList.remove('active');
+    welcome.querySelectorAll('.dev-particle').forEach(p=>p.remove());
+    devUnlocked=true;
+    renderDevDashboard();
+    navigate('dev');
+    showToast('Developer Mode unlocked 👑','success');
+    addLog('Developer logged in');
+    saveStoreData(); // save log
+  },2400);
+}
+
+/* ══════════════════════
+   SEARCH
+══════════════════════ */
+/* ══════════════════════
+   SMART SEARCH ENGINE
+══════════════════════ */
+const searchInput = document.getElementById('mainSearch');
+const searchDropdown = document.getElementById('searchDropdown');
+let searchFocusedIdx = -1;
+let searchFilterCat = '';
+let lastSearchResults = [];
+
+// Highlight matching text
+function highlight(text, query){
+  if(!query) return text;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+}
+
+// Score a product against query (higher = better match)
+function scoreProduct(p, q){
+  const name = (p.name||'').toLowerCase();
+  const cat  = (p.category||'').toLowerCase();
+  const desc = (p.desc||'').toLowerCase();
+  const feats = (Array.isArray(p.features)?p.features.join(' '):(p.features||'')).toLowerCase();
+  if(name === q) return 100;
+  if(name.startsWith(q)) return 80;
+  if(name.includes(q)) return 60;
+  if(cat.includes(q)) return 40;
+  if(desc.includes(q)) return 20;
+  if(feats.includes(q)) return 10;
+  return 0;
+}
+
+function getCatChips(){
+  const cats = [...new Set(getAvailableProducts().map(p=>p.category))];
+  return cats.slice(0,6);
+}
+
+function renderSearchDropdown(q){
+  const PRODUCTS = getAvailableProducts();
+  const chips = getCatChips();
+  let results = PRODUCTS;
+  if(searchFilterCat) results = results.filter(p=>p.category===searchFilterCat);
+  if(q){
+    results = results
+      .map(p=>({p, score: scoreProduct(p, q)}))
+      .filter(x=>x.score>0)
+      .sort((a,b)=>b.score-a.score)
+      .map(x=>x.p);
+  } else {
+    results = results.slice(0,8);
+  }
+  lastSearchResults = results;
+  searchFocusedIdx = -1;
+
+  const chipsHTML = `
+    <div class="search-header">
+      <div class="search-filter-chips">
+        <span class="search-chip${!searchFilterCat?' active':''}" onclick="setSearchCat('',event)">${q?'All':'Browse'}</span>
+        ${chips.map(c=>`<span class="search-chip${searchFilterCat===c?' active':''}" onclick="setSearchCat('${c}',event)">${c}</span>`).join('')}
+      </div>
+      <span class="search-count">${results.length} result${results.length!==1?'s':''}</span>
+    </div>`;
+
+  if(!results.length){
+    searchDropdown.innerHTML = chipsHTML + `
+      <div class="search-no-results">
+        <div class="icon">🔍</div>
+        <p>No results for <strong>"${q}"</strong>${searchFilterCat?' in '+searchFilterCat:''}</p>
+      </div>`;
+    searchDropdown.classList.add('active');
+    return;
+  }
+
+  const MAX = 6;
+  const shown = results.slice(0, MAX);
+  const itemsHTML = shown.map((p,i)=>{
+    const icon = p.iconData
+      ? `<img src="${p.iconData}" alt=""/>`
+      : (p.icon||'📦');
+    const fileTag = p.externalLink
+      ? `<span class="search-result-badge" style="background:rgba(0,212,255,0.15);color:var(--accent2);border:1px solid rgba(0,212,255,0.3)">LINK</span>`
+      : `<span class="search-result-badge" style="background:rgba(0,212,100,0.15);color:#00d464;border:1px solid rgba(0,212,100,0.3)">FILE</span>`;
+    const nameHL = highlight(p.name, q);
+    return `
+    <div class="search-result-item" data-idx="${i}" onclick="closeSearch();navigate('product','${p.id}')">
+      <div class="search-result-icon" style="background:linear-gradient(${p.gradient||'135deg,#6c63ff,#00d4ff'})">${p.iconData?`<img src="${p.iconData}" alt="" style="width:100%;height:100%;object-fit:cover;"/>`:(p.icon||'📦')}</div>
+      <div class="search-result-info">
+        <div class="search-result-name">${nameHL}</div>
+        <div class="search-result-meta">${p.category} · ⭐${p.rating||'5.0'} · ⬇${p.downloadCount||0}</div>
+      </div>
+      ${fileTag}
+    </div>`;
+  }).join('');
+
+  const seeAllHTML = results.length > MAX
+    ? `<div class="search-see-all" onclick="closeSearch();navigate('explore');setTimeout(()=>{document.getElementById('filterCat').value='';renderExplore();},100)">
+        <i class="uil uil-search"></i> See all ${results.length} results
+      </div>`
+    : '';
+
+  searchDropdown.innerHTML = chipsHTML + itemsHTML + seeAllHTML;
+  searchDropdown.classList.add('active');
+}
+
+function setSearchCat(cat, e){
+  if(e) e.stopPropagation();
+  searchFilterCat = cat;
+  renderSearchDropdown(searchInput.value.trim().toLowerCase());
+}
+
+searchInput.addEventListener('input', ()=>{
+  const q = searchInput.value.trim().toLowerCase();
+  if(!q && !searchFilterCat){ searchDropdown.classList.remove('active'); return; }
+  renderSearchDropdown(q);
+});
+
+searchInput.addEventListener('focus', ()=>{
+  const q = searchInput.value.trim().toLowerCase();
+  if(q || searchFilterCat) renderSearchDropdown(q);
+});
+
+// Keyboard navigation ↑ ↓ Enter Escape
+searchInput.addEventListener('keydown', e=>{
+  const items = searchDropdown.querySelectorAll('.search-result-item');
+  if(e.key==='ArrowDown'){
+    e.preventDefault();
+    searchFocusedIdx = Math.min(searchFocusedIdx+1, items.length-1);
+    items.forEach((el,i)=>el.classList.toggle('focused', i===searchFocusedIdx));
+  } else if(e.key==='ArrowUp'){
+    e.preventDefault();
+    searchFocusedIdx = Math.max(searchFocusedIdx-1, -1);
+    items.forEach((el,i)=>el.classList.toggle('focused', i===searchFocusedIdx));
+  } else if(e.key==='Enter'){
+    if(searchFocusedIdx>=0 && items[searchFocusedIdx]){
+      items[searchFocusedIdx].click();
+    } else if(lastSearchResults.length===1){
+      closeSearch(); navigate('product', lastSearchResults[0].id);
+    }
+  } else if(e.key==='Escape'){
+    closeSearch();
+  }
+});
+
+// Press "/" anywhere to focus search
+document.addEventListener('keydown', e=>{
+  if(e.key==='/' && document.activeElement !== searchInput && !e.ctrlKey && !e.metaKey){
+    e.preventDefault();
+    searchInput.focus();
+  }
+});
+
+document.addEventListener('click', e=>{ if(!e.target.closest('.nav-search')) closeSearch(); });
+function closeSearch(){
+  searchDropdown.classList.remove('active');
+  searchFocusedIdx = -1;
+}
+
+/* ══════════════════════
+   WISHLIST
+══════════════════════ */
+function toggleWishlist(btn){
+  btn.classList.toggle('active');
+  showToast(btn.classList.contains('active')?'Added to wishlist ❤️':'Removed from wishlist', btn.classList.contains('active')?'success':'info');
+}
+
+/* ══════════════════════
+   TOAST
+══════════════════════ */
+function showToast(msg, type='info'){
+  const icons={success:'✅',error:'❌',info:'💡'};
+  const toast=document.createElement('div');
+  toast.className=`toast toast-${type}`;
+  toast.innerHTML=`<span class="toast-icon">${icons[type]}</span><span class="toast-msg">${msg}</span><button class="toast-close" onclick="this.parentElement.remove()">✕</button>`;
+  document.getElementById('toastContainer').prepend(toast);
+  setTimeout(()=>{ toast.style.opacity='0'; toast.style.transform='translateX(80px)'; toast.style.transition='all 0.4s'; },3500);
+  setTimeout(()=>toast.remove(),4000);
+}
+
+/* ══════════════════════
+   CONFIRM DIALOG
+══════════════════════ */
+let _confirmCallback = null;
+function showConfirm(title, msg, icon, callback){
+  document.getElementById('confirmTitle').textContent=title;
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmIcon').textContent=icon||'⚠️';
+  _confirmCallback=callback;
+  document.getElementById('confirmOverlay').classList.add('active');
+  document.getElementById('confirmOkBtn').onclick=async ()=>{ closeConfirm(); if(_confirmCallback) await _confirmCallback(); };
+}
+function closeConfirm(){ document.getElementById('confirmOverlay').classList.remove('active'); _confirmCallback=null; }
+
+/* ══════════════════════
+   THEME
+══════════════════════ */
+document.getElementById('themeToggle').onclick=function(){
+  const html=document.documentElement; const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('themeIcon').className=isDark?'uil uil-sun':'uil uil-moon';
+  showToast(`Switched to ${isDark?'Light':'Dark'} Mode`,'info');
+};
+
+/* ══════════════════════
+   NOTIFICATIONS
+══════════════════════ */
+document.getElementById('notifBtn').onclick=function(e){
+  e.stopPropagation(); document.getElementById('notifPanel').classList.toggle('active');
+};
+document.addEventListener('click', e=>{
+  if(!e.target.closest('#notifPanel')&&!e.target.closest('#notifBtn')) document.getElementById('notifPanel').classList.remove('active');
+});
+
+/* ══════════════════════
+   CARD REVEAL ANIMATION
+══════════════════════ */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }
+  });
+},{threshold:0.06});
+function observeCards(){
+  document.querySelectorAll('.product-card:not([data-observed]), .cat-card:not([data-observed]), .featured-card:not([data-observed])').forEach(el=>{
+    el.setAttribute('data-observed','1');
+    el.style.opacity=0; el.style.transform='translateY(24px)';
+    el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+    io.observe(el);
+  });
+}
+
+/* ══════════════════════
+   HERO COUNTER (dynamic)
+══════════════════════ */
+function animateCounter(el, target){
+  let cur=0; const step=Math.max(1, target/60);
+  const t=setInterval(()=>{
+    cur=Math.min(cur+step, target);
+    const n=Math.floor(cur);
+    el.setAttribute('data-done','1');
+    el.textContent = el.getAttribute('data-suffix') ? n.toLocaleString()+el.getAttribute('data-suffix') : n.toLocaleString()+'+';
+    if(cur>=target) clearInterval(t);
+  },25);
+}
+
+
+/* ══════════════════════
+   CHANGE DEV PASSWORD
+══════════════════════ */
+function togglePwField(inputId, eyeIcon){
+  const inp = document.getElementById(inputId);
+  if(!inp) return;
+  if(inp.type==='password'){ inp.type='text'; eyeIcon.className='uil uil-eye-slash'; }
+  else { inp.type='password'; eyeIcon.className='uil uil-eye'; }
+}
+
+function changeDevPassword(){
+  const current = document.getElementById('pwCurrent').value;
+  const newPw = document.getElementById('pwNew').value;
+  const confirm = document.getElementById('pwConfirm').value;
+  const status = document.getElementById('pwStatus');
+
+  const showPwStatus = (msg, ok)=>{
+    status.style.display='block';
+    status.style.background = ok ? 'rgba(0,212,100,0.1)' : 'rgba(255,59,59,0.1)';
+    status.style.border = ok ? '1px solid rgba(0,212,100,0.3)' : '1px solid rgba(255,59,59,0.3)';
+    status.style.color = ok ? '#00d464' : '#ff6b6b';
+    status.textContent = msg;
+  };
+
+  if(current !== getDevCode()){ showPwStatus('✗ Current password is incorrect.', false); return; }
+  if(newPw.length < 6){ showPwStatus('✗ New password must be at least 6 characters.', false); return; }
+  if(newPw !== confirm){ showPwStatus('✗ Passwords do not match.', false); return; }
+
+  lsSet('yos_dev_code', newPw);
+  addLog('Developer password changed');
+  showPwStatus('✅ Password updated! You will be logged out in 3 seconds…', true);
+  document.getElementById('pwCurrent').value='';
+  document.getElementById('pwNew').value='';
+  document.getElementById('pwConfirm').value='';
+  showToast('Developer password updated 🔐 — Re-authentication required', 'success');
+  setTimeout(()=>{
+    devUnlocked = false;
+    navigate('home');
+    showToast('Session locked. Use new password to re-enter dev mode.', 'info');
+  }, 3000);
+}
+
+/* ══════════════════════
+   GITHUB TOKEN DASHBOARD
+══════════════════════ */
+function saveGhToken(){
+  const token = document.getElementById('ghTokenDashInput').value.trim();
+  const statusEl = document.getElementById('ghTokenStatus');
+  const showSt = (msg,ok)=>{
+    statusEl.style.display='block';
+    statusEl.style.background=ok?'rgba(0,212,100,0.1)':'rgba(255,59,59,0.1)';
+    statusEl.style.border=ok?'1px solid rgba(0,212,100,0.3)':'1px solid rgba(255,59,59,0.3)';
+    statusEl.style.color=ok?'#00d464':'#ff6b6b';
+    statusEl.textContent=msg;
+  };
+  if(!token||!token.startsWith('ghp_')&&!token.startsWith('github_pat_')){
+    showSt('✗ Token غير صالح — يجب أن يبدأ بـ ghp_ أو github_pat_',false); return;
+  }
+  setGhToken(token);
+  showSt('✅ Token محفوظ بنجاح — ستُحفظ التعديلات على GitHub الآن',true);
+  showToast('GitHub Token saved 🔑','success');
+  addLog('GitHub Token updated');
+  updateGhTokenDisplay();
+}
+
+async function testGhToken(){
+  const token = document.getElementById('ghTokenDashInput').value.trim() || getGhToken();
+  const statusEl = document.getElementById('ghTokenStatus');
+  const showSt = (msg,ok)=>{
+    statusEl.style.display='block';
+    statusEl.style.background=ok?'rgba(0,212,100,0.1)':'rgba(255,59,59,0.1)';
+    statusEl.style.border=ok?'1px solid rgba(0,212,100,0.3)':'1px solid rgba(255,59,59,0.3)';
+    statusEl.style.color=ok?'#00d464':'#ff6b6b';
+    statusEl.textContent=msg;
+  };
+  if(!token){ showSt('✗ لا يوجد Token محفوظ',false); return; }
+  showSt('⏳ جاري الاختبار…',true);
+  try{
+    const res = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}`,{
+      headers:{'Authorization':`token ${token}`,'Accept':'application/vnd.github.v3+json'}
+    });
+    if(res.ok){
+      const d = await res.json();
+      showSt(`✅ اتصال ناجح — Repo: ${d.full_name} (${d.private?'Private':'Public'})`,true);
+    } else {
+      const e = await res.json();
+      showSt(`✗ فشل: ${e.message||res.status}`,false);
+    }
+  }catch(e){ showSt('✗ خطأ في الاتصال: '+e.message,false); }
+}
+
+function updateGhTokenDisplay(){
+  const el = document.getElementById('ghTokenCurrent');
+  if(!el) return;
+  const t = getGhToken();
+  el.textContent = t ? `Token محفوظ: ${t.substring(0,8)}${'*'.repeat(12)}` : 'لا يوجد Token محفوظ';
+}
+
+
+document.addEventListener('DOMContentLoaded', async ()=>{
+  setupUploadZones();
+
+  // Wire announcement live preview
+  ['annText','annIcon','annHighlight'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', updateAnnPreview);
+  });
+
+  // Load data from GitHub, then render everything
+  await initStore();
+  renderHome();
+  renderHomeCats();
+  populateFilterCats();
+  renderExplore();
+  renderCategoryPage('games','Games');
+  renderCategoryPage('apps','Apps');
+  renderCategoryPage('tools','Tools');
+
+  // Hero stat counters
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const key=el.getAttribute('data-count');
+    const PRODUCTS=getProducts();
+    let val=0;
+    if(key==='products') val=PRODUCTS.length;
+    else if(key==='downloads') val=PRODUCTS.reduce((s,p)=>s+parseInt(p.downloadCount||0),0);
+    else if(key==='users') val=0;
+    else if(key==='satisfaction'){ el.textContent='99%'; return; }
+    animateCounter(el, val);
+  });
+});
+</script>
+</body>
+</html>
